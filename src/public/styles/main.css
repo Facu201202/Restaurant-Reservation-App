@@ -1,0 +1,527 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/*------ABOUT---------*/
+
+.about {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 170px 0;
+}
+
+.about img {
+    max-width: 45%;
+}
+
+
+.about-text {
+    max-width: 50%;
+    padding-right: 70px;
+    padding-top: 5px;
+}
+
+
+.about-text h3 {
+    font-size: 65px;
+    margin-bottom: 50px;
+}
+
+
+.about-text p {
+    font-size: x-large;
+    margin-bottom: 50px;
+    max-width: 80%;
+}
+
+.about-text button {
+    font-size: x-large;
+    width: 200px;
+    height: 70px;
+}
+
+
+/*------PLATOS---------*/
+
+.platos {
+    padding: 100px 30px;
+    height: auto;
+    background-image: url('../assets/platos.png');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.platos h3 {
+    font-size: 65px;
+    margin-bottom: 40px;
+}
+
+
+/*----------RESERVA----------*/
+
+.reserva {
+    height: auto;
+    display: flex;
+    max-width: 100%;
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
+
+.right {
+    width: 55%;
+    padding-left: 50px;
+    padding-top: 80px;
+}
+
+
+.left {
+    width: 45%;
+    padding-left: 110px;
+}
+
+.left h3 {
+    font-size: 45px;
+    max-width: 85%;
+    margin-bottom: 100px;
+}
+
+.left .button-reserva {
+    font-size: xx-large;
+    width: 300px;
+    height: 90px;
+}
+
+.reserva-max {
+    max-width: 370px;
+}
+
+.reserva-min {
+    max-width: 200px;
+    margin-right: 30px;
+}
+
+
+
+
+/*----------CLIENTES------------------*/
+
+.clientes {
+    height: auto;
+    background-image: url("../assets/clientes.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 80px;
+    display: flex;
+}
+
+.clientes-left {
+    width: 50%;
+    font-size: 56px;
+}
+
+.clientes-right {
+    padding-top: 70px;
+    width: 50%;
+}
+
+
+.clientes-right .feedback {
+    max-width: 80%;
+    font-size: 30px;
+}
+
+.clientes-right .feedback-name {
+    font-size: 25px;
+    color: #fea941;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+/*---------RESPONSIVE MAIN-----------*/
+
+
+/*dispositivos móviles pequeños */
+
+@media (max-width: 768px) {
+
+    /*------ABOUT---------*/
+    .about {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 40px 20px;
+        width: 100%;
+    }
+
+    .about-text {
+        max-width: 100%;
+        padding-right: 10px;
+        padding-top: 5px;
+    }
+
+    .about-text h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .about-text p {
+        font-size: medium;
+        margin-bottom: 30px;
+    }
+
+    .about-text button {
+        font-size: medium;
+        width: 140px;
+        height: 40px;
+    }
+
+    .about img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*------PLATOS---------*/
+
+    .platos {
+        height: auto;
+    }
+
+    .platos h3 {
+        font-size: 50px;
+        margin-bottom: 40px;
+    }
+
+    /*------RESERVA---------*/
+
+    .reserva {
+        height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: 100%;
+        padding-top: 80px;
+    }
+
+    .right {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+
+    .left {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .left h3 {
+        font-size: 20px;
+        max-width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .left .button-reserva {
+        font-size: larger;
+        width: 150px;
+        height: 50px;
+    }
+
+    .reserva-max {
+        max-width: 200px;
+    }
+
+    .reserva-min {
+        max-width: 80px;
+        margin-right: 15px;
+    }
+
+    /*----------CLIENTES------------------*/
+
+    .clientes {
+        height: auto;
+        background-image: url("../assets/clientes.jpg");
+        background-position: center;
+        background-size: cover;
+        padding: 10px;
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .clientes-left {
+        width: 100%;
+        font-size: 33px;
+    }
+
+    .clientes-right {
+        padding-top: 15px;
+        width: 100%;
+    }
+
+
+    .clientes-right .feedback {
+        max-width: 100%;
+        font-size: 20px;
+    }
+
+    .clientes-right .feedback-name {
+        font-size: 15px;
+        color: #fea941;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Estilos para tablets y dispositivos móviles grandes */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    /*------ABOUT---------*/
+    .about {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 40px 20px;
+        width: 100%;
+    }
+
+    .about-text {
+        max-width: 100%;
+        padding-right: 10px;
+        padding-top: 5px;
+    }
+
+    .about-text h3 {
+        font-size: 60px;
+        margin-bottom: 30px;
+    }
+
+    .about-text p {
+        font-size: x-large;
+        margin-bottom: 50px;
+    }
+
+    .about-text button {
+        font-size: larger;
+        width: 170px;
+        height: 60px;
+    }
+
+    .about img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*------RESERVA---------*/
+
+    .reserva {
+        height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: 100%;
+        padding-top: 80px;
+    }
+
+    .right {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+
+    .left {
+        width: 100%;
+        padding: 50px;
+        padding-top: 5px;
+    }
+
+    .left h3 {
+        font-size: 30px;
+        max-width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .left .button-reserva {
+        font-size: x-large;
+        width: 180px;
+        height: 60px;
+    }
+
+    .reserva-max {
+        max-width: 300px;
+    }
+
+    .reserva-min {
+        max-width: 150px;
+        margin-right: 15px;
+    }
+
+    /*----------CLIENTES------------------*/
+
+    .clientes {
+        height: auto;
+        background-image: url("../assets/clientes.jpg");
+        background-position: center;
+        background-size: cover;
+        padding: 10px;
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .clientes-left {
+        width: 100%;
+        font-size: 40px;
+    }
+
+    .clientes-right {
+        padding-top: 15px;
+        width: 100%;
+    }
+
+
+    .clientes-right .feedback {
+        max-width: 100%;
+        font-size: 28px;
+    }
+
+    .clientes-right .feedback-name {
+        font-size: 20px;
+        color: #fea941;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+
+
+/*pantallas de laptops pequeñas */
+@media (min-width: 1024px) and (max-width: 1280px) {
+
+    /*------ABOUT---------*/
+    .about-text {
+        max-width: 50%;
+        padding-right: 10px;
+        padding-left: 40px;
+        padding-top: 5px;
+    }
+
+    .about-text h3 {
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+
+    .about-text p {
+        font-size: larger;
+        margin-bottom: 30px;
+        max-width: 85%;
+    }
+
+    .about-text button {
+        font-size: medium;
+        width: 140px;
+        height: 50px;
+    }
+
+    .about img {
+        max-width: 50%;
+        max-height: 90%;
+    }
+
+
+    /*----------RESERVA----------*/
+
+    .left {
+        width: 45%;
+        padding-left: 70px;
+    }
+
+    .left h3 {
+        font-size: 34px;
+        max-width: 95%;
+        margin-bottom: 40px;
+    }
+
+    .left .button-reserva {
+        font-size: large;
+        width: 230px;
+        height: 70px;
+    }
+
+    .reserva-max {
+        max-width: 300px;
+    }
+
+    .reserva-min {
+        max-width: 150px;
+        margin-right: 20px;
+    }
+
+    /*----------CLIENTES------------------*/
+
+    .clientes {
+        background-image: url("../assets/clientes.jpg");
+        background-position: center;
+        background-size: cover;
+        padding: 20px;
+        display: flex;
+    }
+
+    .clientes-left {
+        width: 50%;
+        font-size: 40px;
+    }
+
+    .clientes-right {
+        padding-top: 50px;
+        width: 50%;
+    }
+
+
+    .clientes-right .feedback {
+        max-width: 95%;
+        font-size: 25px;
+    }
+
+    .clientes-right .feedback-name {
+        font-size: 18px;
+        color: #fea941;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+
+}
+
+
+
+/* pantallas de escritorio medianas */
+@media (min-width: 1280px) and (max-width: 1440px) {
+
+    /*------ABOUT---------*/
+    .about-text h3 {
+        font-size: 50px;
+        margin-bottom: 40px;
+    }
+
+    .about-text p {
+        font-size: large;
+        margin-bottom: 40px;
+        max-width: 80%;
+    }
+
+    .about-text button {
+        font-size: large;
+        width: 170px;
+        height: 60px;
+    }
+
+}

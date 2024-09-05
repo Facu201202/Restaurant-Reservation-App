@@ -15,6 +15,7 @@ app.listen(PORT, () => {
 // Configuración 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'build', 'public')));
 
 //api
 app.use("/api", routes);

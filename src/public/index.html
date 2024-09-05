@@ -1,45 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/index.css">
-    <title>Inicio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/styles/carrusel.css">
 </head>
+
 <body>
-    <header class="header">
-        <div class="header-background"></div>
-        <div class="header-content">
-            <nav class="navbar">
-                <div class="logo">
-                    <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
-                    <h3>LOGOTIPO</h3>
-                </div>
-                <ul class="li-elements">
-                    <li ><a class="li-items" href="">ACERCA DE</a></li>
-                    <li ><a class="li-items" href="">CONTACTO</a></li>
-                    <li ><a class="li-items" href="">PLATOS</a></li>
-                    <li ><a class="li-items" href="">OPINIONES</a></li>
-                </ul>
-                <BUtton class="button-nav">Hacer reserva</BUtton>
-            </nav>
-            <div>
-                <h1>
-                    Experiencias culinarias únicas para ti
-                </h1>
-                <h2>
-                    Si quieres disfrutar, reservar o compartir, estamos aquí para ti
-                </h2>
+  <header class="header">
+    <div class="header-background"></div>
+    <div class="header-content">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
+          <h3>LOGOTIPO</h3>
+        </div>
+        <ul class="li-elements">
+          <li><a class="li-items" href="#about">ACERCA DE</a></li>
+          <li><a class="li-items" href="">CONTACTO</a></li>
+          <li><a class="li-items" href="#platos">PLATOS</a></li>
+          <li><a class="li-items" href="#clientes">OPINIONES</a></li>
+        </ul>
+        <a href="#reserva"><BUtton class="button-nav">Hacer reserva</BUtton></a>
+        <div class="hamburger">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </nav>
+
+      <div class="header-text-content">
+        <h1 class="titulo">
+          Experiencias culinarias únicas para ti
+        </h1>
+        <h2 class="header-text">
+          Si quieres disfrutar, reservar o compartir, estamos aquí para ti
+        </h2>
+        <a href="#reserva"><BUtton class="button-header">Hacer reserva</BUtton></a>
+      </div>
+    </div>
+
+  </header>
+  <main>
+    <section class="about" id="about">
+      <img src="/assets/about.jpg" alt="">
+      <div class="about-text">
+        <h3>Acerca de nosotros</h3>
+        <p>Desde 1990, ofrecemos experiencias culinarias únicas, combinando tradición con innovación. Nuestro
+          compromiso es brindar un ambiente acogedor y elegante para cada ocasión, ya sea una comida íntima,
+          una reunión de negocios o una celebración especial. Todos nuestros platillos están elaborados con
+          ingredientes frescos y de alta calidad, garantizando un sabor que te encantará</p>
+        <button class="button-about">contactanos</button>
+      </div>
+    </section>
+    <section class="platos" id="platos">
+      <h3>Platos famosos</h3>
+      <div class="slide-container swiper">
+        <div class="slide-content">
+          <div class="card-wrapper swiper-wrapper">
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/ensalada.jpg" alt="">
+              </div>
+              <div class="card-content">
+                <h2 class="name">Ensalada</h2>
+                <p class="description">Vegetales frescos con un aliño de aceite de oliva y balsámico.</p>
+              </div>
             </div>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/pollo a la plancha.jpg" alt="">
+              </div>
+
+              <div class="card-content">
+                <h2 class="name">Pollo a la plancha</h2>
+                <p class="description">Pollo tierno con vegetales salteados y salsa de la casa.</p>
+              </div>
+            </div>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/lasaña.jpg" alt="">
+              </div>
+
+              <div class="card-content">
+                <h2 class="name">Lasaña</h2>
+                <p class="description">Lasaña tradicional con carne y queso gratinado.</p>
+
+              </div>
+            </div>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/ravioles de langosta.jpg" alt="">
+              </div>
+
+              <div class="card-content">
+                <h2 class="name">Ravioli de Langosta</h2>
+                <p class="description">Raviolis de langosta con mantequilla trufada y espárragos frescos.</p>
+
+              </div>
+            </div>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/salmon_a_la_plancha.jpg" alt="">
+              </div>
+
+              <div class="card-content">
+                <h2 class="name">Salmón a la Parrilla</h2>
+                <p class="description">Filete de salmón con espárragos y papas, aderezado con limón y eneldo.</p>
+              </div>
+            </div>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <img src="/assets/ensalada capresse.jpg" alt="">
+              </div>
+
+              <div class="card-content">
+                <h2 class="name">Ensalada Caprese</h2>
+                <p class="description">Tomate, mozzarella y albahaca con aceite de oliva y balsámico.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-    </header>
-    <main>
-        <section class="about"></section>
-        <section class="platos"></section>
-        <section class="reserva"></section>
-        <section class="clientes"></section>
-    </main>
-    <footer></footer>
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </section>
+    <section class="reserva" id="reserva">
+      <div class="left">
+        <h3>Descubre las experiencias culinarias más exclusivas. Reserva tu mesa y déjate sorprender por una experiencia
+          inolvidable.</h3>
+        <button class="button-reserva">Hacer reserva</button>
+      </div>
+      <div class="right">
+        <img class="reserva-min" src="/assets/reserva-2.jpg" alt="">
+        <img class="reserva-max" src="/assets/reserva-1.jpg" alt="">
+      </div>
+
+    </section>
+    <section class="clientes" id="clientes">
+      <div class="clientes-left">
+        <h3>Clientes satisfechos</h3>
+      </div>
+      <div class="clientes-right">
+        <div class="text-item">
+          <p class="feedback">
+            Cada visita ha sido una experiencia única. La atención personalizada y la calidad de los platos nos han
+            dejado siempre con ganas de volver. Un verdadero placer gastronómico.
+          </p>
+          <p class="feedback-name">
+            Carlos Martínez
+          </p>
+        </div>
+        <div class="text-item">
+          <p class="feedback">
+            Desde el primer bocado, supe que este restaurante se había convertido en mi lugar favorito. Cada plato está
+            meticulosamente elaborado y nunca decepciona, sin importar el día o el menú
+          </p>
+          <p class="feedback-name">
+            Ana Ruiz
+          </p>
+        </div>
+        <div class="text-item">
+          <p class="feedback">
+            El servicio y la presentación de los platos superaron todas nuestras expectativas. La combinación de sabores
+            y la creatividad en cada comida nos dejaron completamente encantados. Sin duda, una joya culinaria
+          </p>
+          <p class="feedback-name">
+            Luis Hernández
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer></footer>
+  <script src="/scripts/hamburger.js"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript -->
+  <script src="/scripts/carrusel.js"></script>
 </body>
+
 </html>

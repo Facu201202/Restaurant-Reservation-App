@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 95vh;
+}
+
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/imagenPrincipal.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(80%);
+    z-index: 1;
+    /* Asegura que el fondo esté detrás del contenido */
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    /* Asegura que el contenido esté encima del fondo */
+    color: white;
+    height: 100%;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bold
+}
+
+.li-elements {
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    flex: 1;
+    padding: 0 50px;
+}
+
+
+.li-items {
+    text-decoration: none;
+    color: white;
+}
+
+.li-items:hover {
+    color: rgba(255, 255, 255, 0.815);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+}
+
+
+.button-nav, .button-header, .button-about, .button-reserva {
+    padding: 10px;
+    background-color: #fea941;
+    width: 160px;
+    height: 50px;
+    color: white;
+    border: none;
+    font-size: large;
+    font-weight: bold
+}
+
+.button-header {
+    display: none;
+}
+
+.button-nav, .button-header, .button-about, .button-reserva:hover {
+    cursor: pointer;
+}
+
+.header-text-content {
+    padding-left: 50px;
+    padding-top: 150px;
+    max-width: 70%;
+}
+
+.titulo {
+    font-size: 90px;
+    margin-bottom: 20px;
+}
+
+
+.header-text {
+    font-weight: normal;
+}
+
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/*---------RESPONSIVE---------- */
+
+
+
+
+
+
+/* dispositivos móviles medianos */
+@media (max-width: 768px) {
+    .header{
+        height: 90vh;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .li-elements,
+    .button-nav {
+        position: fixed;
+        right: -100%;
+        top: 60px;
+        flex-direction: column;
+        background-color: #df8c27;
+        width: 20%;
+        height: 20vh;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+        padding: 0 10px;
+    }
+
+    .li-elements.show {
+        right: 0;
+    }
+
+    .li-elements li{
+        font-size:x-small;
+        margin-bottom: 10px;
+    }
+
+    .header-text-content {
+        padding-right: 10px;
+        padding-left: 10px;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .header-text{
+        font-size: 15px;
+       
+    }
+
+    .button-header{
+        margin-top: 40px;
+        display: inline;
+    }
+    .titulo{
+        font-size:35px;
+    }
+
+}
+
+/* Estilos para tablets y dispositivos móviles grandes */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .li-elements,
+    .button-nav {
+        position: fixed;
+        right: -100%;
+        top: 60px;
+        flex-direction: column;
+        background-color: #df8c27;
+        width: 16%;
+        height: 25vh;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+        padding: 0 10px;
+    }
+
+    .li-elements.show {
+        right: 0;
+    }
+
+    .li-elements li{
+        font-size:medium;
+        margin-bottom: 20px;
+    }
+
+    .header-text-content {
+        padding-right: 70px;
+        padding-left: 70px;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .header-text{
+        font-size: 20px;
+       
+    }
+
+    .button-header{
+        margin-top: 40px;
+        display: inline;
+    }
+    .titulo{
+        font-size:50px;
+    }
+}
+
+
+
+/*pantallas de laptops pequeñas */
+@media (min-width: 1024px) and (max-width: 1280px){
+
+    .navbar {
+        font-size: large;
+    }
+
+    .button-nav {
+        width: 140px;
+        height: 40px;
+        font-size: medium;
+    }
+
+    .header-text {
+        font-size: 20px;
+    }
+
+    .titulo{
+        font-size: 60px;
+    }
+
+    .header-text-content {
+        max-width: 73%;
+    }
+}
+
+
+
+/* pantallas de escritorio medianas */
+@media (min-width: 1280px) and (max-width: 1440px) {
+
+    .titulo {
+        font-size: 60px;
+    }
+}
