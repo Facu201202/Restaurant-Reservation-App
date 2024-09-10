@@ -1,0 +1,167 @@
+footer {
+    height: auto;
+    padding: 50px;
+}
+
+footer .footer-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+
+.footer-img img {
+    max-width: 25%;
+    object-fit: cover;
+    margin: 20px;
+}
+
+
+.footer-contact {
+    display: flex;
+    justify-content: center;
+}
+
+
+.footer-left {
+    width: 50%;
+    font-size: 40px;
+    text-align: center;
+}
+
+.footer-right {
+    padding-top: 10px;
+    padding-left: 15px;
+    width: 50%;
+}
+
+
+.footer-right .footer-info {
+    max-width: 80%;
+    font-size: 20px;
+    color: #76766b;
+}
+
+.footer-right .footer-info-title {
+    font-size: 25px;
+    color: #fea941;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+
+/*----------RESPONSIVE------------------*/
+
+@media (max-width: 768px) {
+
+    footer {
+        padding: 30px 10px;
+
+    }
+
+    footer .footer-img {
+        display: none;
+        ;
+    }
+
+
+    .footer-contact {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .footer-left {
+        width: 100%;
+        font-size: 33px;
+
+    }
+
+    .footer-right {
+        padding-top: 15px;
+        width: 100%;
+    }
+
+
+    .footer-right .footer-info-title {
+        max-width: 100%;
+        font-size: 20px;
+    }
+
+    .footer-right .footer-info {
+        max-width: 100%;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Estilos para tablets y dispositivos móviles grandes */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+
+    footer {
+        padding: 30px 10px;
+
+    }
+
+    footer .footer-img {
+        display: none;
+    }
+
+
+    .footer-contact {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .footer-left {
+        width: 100%;
+        font-size: 45px;
+
+    }
+
+    .footer-right {
+        padding-top: 15px;
+        width: 100%;
+    }
+
+
+    .footer-right .footer-info-title {
+        max-width: 100%;
+        font-size: 30px;
+    }
+
+    .footer-right .footer-info {
+        max-width: 100%;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+
+
+/*pantallas de laptops pequeñas */
+@media (min-width: 1024px) and (max-width: 1280px) {
+
+
+    /*----------FOOTER------------------*/
+
+
+    .footer-left {
+        font-size: 30px;
+        text-align: center;
+    }
+     
+    .footer-right .footer-info {
+        font-size: 15px;
+    }
+    
+    .footer-right .footer-info-title {
+        font-size: 20px;
+    }
+
+}

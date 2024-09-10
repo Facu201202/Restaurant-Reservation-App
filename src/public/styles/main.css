@@ -52,7 +52,7 @@
 .platos {
     padding: 100px 30px;
     height: auto;
-    background-image: url('../assets/platos.png');
+    background-image: url('../assets/platos.jpg');
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -246,9 +246,6 @@
 
     .clientes {
         height: auto;
-        background-image: url("../assets/clientes.jpg");
-        background-position: center;
-        background-size: cover;
         padding: 10px;
         padding-top: 40px;
         display: flex;
@@ -367,9 +364,6 @@
 
     .clientes {
         height: auto;
-        background-image: url("../assets/clientes.jpg");
-        background-position: center;
-        background-size: cover;
         padding: 10px;
         padding-top: 40px;
         display: flex;
@@ -468,9 +462,6 @@
     /*----------CLIENTES------------------*/
 
     .clientes {
-        background-image: url("../assets/clientes.jpg");
-        background-position: center;
-        background-size: cover;
         padding: 20px;
         display: flex;
     }
