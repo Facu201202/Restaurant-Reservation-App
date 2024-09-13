@@ -1,15 +1,14 @@
-import express from "express";
-const router = express.Router()
+import {Router, Request, Response} from "express";
+import { createUser } from "../controllers/user_controllers";
+const router = Router()
 
 
-router.get("/", (_req, res) => {
+router.get("/", (_req: Request, res: Response) => {
   res.send("hola desde router get")  
 })
 
 
-router.post("/", (_req, res) => {
-    res.send("router post")
-})
+router.post("/register", createUser)
 
 
 export default router

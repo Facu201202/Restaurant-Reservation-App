@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../assets/login.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    text-align: center;
+    width: 800px;
+    display: flex;
+}
+
+img{
+    object-fit: cover;
+    width: 50%;
+    max-height: 497px;
+}
+
+.form-container{
+    width: 50%;
+}
+
+h1{
+    background-color: #fea941;
+    color: white;
+    padding: 30px;
+}
+
+.user-form{
+    background-color: white;
+    margin: auto;
+    text-align: start;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+}
+
+.user-form label{
+    font-size: x-large;
+    margin: 7px 0;
+    font-weight: bold;
+}
+
+.user-form input{
+    font-size: large;
+    margin: 10px 0;
+    padding: 10px;
+    height: 50px;
+}
+
+
+button{
+    color: white;
+    font-size: large;
+    background-color: #fea941;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+
+button:hover{
+    background-color: #db933a;
+    cursor: pointer;
+}
+
+
+p{
+    font-size: larger;
+}
+
+p a{
+    text-decoration: none;
+    padding-left: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+
+/*----------RESPONSIVE LOGIN-REGISTER---------*/
+
+@media (max-width: 800px){
+    .container{
+        display: inline;
+    }
+
+    .form-container{
+        width: 370px;
+    }
+
+    img{
+        display: none;
+    }
+}

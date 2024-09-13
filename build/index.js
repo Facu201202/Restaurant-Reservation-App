@@ -20,5 +20,11 @@ app.use(express_1.default.static(path_1.default.join(__dirname, '..', 'build', '
 app.use("/api", routes_1.default);
 // rutas
 app.get('/inicio', (_req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '..', 'src', 'public', 'index.html'));
+    res.sendFile(path_1.default.join(__dirname, 'public', 'index.html'));
+});
+app.get("/login", (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'public', 'login.html'));
+});
+app.get("/register", (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'public', 'register.html'));
 });

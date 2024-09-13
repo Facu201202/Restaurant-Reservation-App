@@ -23,6 +23,15 @@ app.use("/api", routes);
 
 // rutas
 app.get('/inicio', (_req, res) => {
-    res.sendFile(path.join(__dirname,'..', 'src', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+
+app.get("/login", (_req, res) =>{
+    res.sendFile(path.join(__dirname, 'public', 'login.html'))
+})
+
+
+app.get("/register", (_req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'register.html'))
+}) 
