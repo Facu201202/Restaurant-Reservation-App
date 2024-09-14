@@ -11,15 +11,18 @@
         <img src="/assets/login-mini.jpg" alt="">
         <div class="form-container">
             <h1>INICIAR SESIÓN</h1>
-            <form class="user-form">
+            <form class="user-form" id="user-form">
                 <label for="usuario">Usuario</label>
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario">
                 <label for="contraseña">Contraseña</label>
                 <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
+                <p id="message"></p>
                 <button>Iniciar Sesión</button>
                 <p>¿No tienes una cuenta?<a href="/register">Registrarse</a></p>
             </form>
         </div>
     </div>
+
+    <script src="/scripts/login.js"></script>
 </body>
 </html>

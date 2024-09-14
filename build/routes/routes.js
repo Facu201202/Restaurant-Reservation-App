@@ -7,4 +7,5 @@ router.get("/", (_req, res) => {
     res.send("hola desde router get");
 });
 router.post("/register", user_controllers_1.createUser);
+router.post("/login", user_controllers_1.findUser);
 exports.default = router;

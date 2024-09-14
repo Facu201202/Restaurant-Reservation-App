@@ -1,7 +1,9 @@
 import express from "express";
 import path from 'path';
 import routes from "./routes/routes";
-
+import { validarToken } from "./middlewares/auth";
+import cookieParser from "cookie-parser"
+ 
 
 
 const PORT = 3000;
@@ -16,6 +18,7 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.use(express.static(path.join(__dirname, '..', 'build', 'public')));
+app.use(cookieParser())
 
 //api
 app.use("/api", routes);
@@ -35,3 +38,10 @@ app.get("/login", (_req, res) =>{
 app.get("/register", (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'))
 }) 
+
+
+//rutas de usuario 
+
+app.get("/user", validarToken, (_req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'userPages', 'home.html'));
+})

@@ -88,6 +88,13 @@ p a{
     font-weight: bold;
 }
 
+#message {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
 
 /*----------RESPONSIVE LOGIN-REGISTER---------*/
 

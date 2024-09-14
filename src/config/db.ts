@@ -23,13 +23,19 @@ connection.connect((err) => {
 })
 
 
-
+export function traerUno(data: string): Promise<Usuario[]>{
+    return new Promise((resolve, reject) =>{
+        connection.query(`SELECT * FROM usuarios WHERE usuario = ?`, data, (error, result) => {
+            error ? reject(error) : resolve(result);
+        })
+    })
+}
 
 
 export function agregar(data: Usuario): Promise<OkPacket> {
     return new Promise((resolve, reject) => {
-        const values = [data.nombre, data.apellido, data.correo, data.contraseña, data.rol]
-        connection.query(`INSERT INTO usuarios (nombre, apellido, correo, contraseña, rol) VALUES (?, ?, ?, ?, ?)`, values, (error, result) => {
+        const values = [data.nombre, data.apellido,data.usuario, data.correo, data.contrasenia, data.rol]
+        connection.query(`INSERT INTO usuarios (nombre, apellido, usuario, correo, contrasenia, rol) VALUES (?, ?, ?, ?, ?, ?)`, values, (error, result) => {
             error ? reject(error) : resolve(result)
         })
     }) 

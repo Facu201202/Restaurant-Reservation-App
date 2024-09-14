@@ -10,19 +10,23 @@
     <div class="container" style="width: 400px;">
         <div class="form-container" style="width: 100%;">
             <h1>CREAR CUENTA</h1>
-            <form class="user-form" style="height: auto;">
+            <form class="user-form" id="user-form" style="height: auto;">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" placeholder="apellido">
                 <label for="correo">Correo</label>
                 <input type="email" name="correo" id="correo" placeholder="Correo">
                 <label for="usuario">Usuario</label>
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario">
                 <label for="contraseña">Contraseña</label>
                 <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
-                <button>Crear Cuenta</button>
+                <p id="message">Cuenta creada con exito</p>
+                <button type="submit">Crear Cuenta</button>
                 <p>¿Ya tienes una cuenta?<a href="/login">Logearse</a></p>
             </form>
         </div>
     </div>
+    <script src="/scripts/register.js"></script>
 </body>
 </html>
