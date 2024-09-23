@@ -17,15 +17,12 @@ function validarToken(req, res, next) {
     try {
         const token = req.cookies.jwt;
         if (!token)
-            res.status(403).json({ mensaje: "Acceso denegado: No se proporcionó token" });
+            res.redirect("/login");
         const validPaylod = jsonwebtoken_1.default.verify(token, keySecret);
         console.log(validPaylod);
         next();
     }
     catch (err) {
-        res.status(401).json({
-            message: "TOken invalido",
-            error: err
-        });
+        res.redirect("/login");
     }
 }

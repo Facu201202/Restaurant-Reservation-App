@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/styles/userHome.css">
+  <link rel="stylesheet" href="/styles/calendar.css">
 </head>
+
 <body>
-    <h1>User home</h1>
+  <header class="header">
+    <div class="header-content">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
+          <h3>LOGOTIPO</h3>
+        </div>
+        <ul class="li-elements">
+          <li><a class="li-items" href="">MIS RESERVAS</a></li>
+          <li><a class="li-items" href="">RESERVAR</a></li>
+        </ul>
+        <a><BUtton class="button-nav" id="button-nav">Cerrar Sesión</BUtton></a>
+        <div class="hamburger">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </nav>
+    </div>
+
+  </header>
+  <main class="main">
+    <div class="container">
+      <p>Seleccione el dia y la hora de la reserva, a continuación se muestran los horarios disponibles en base a la
+        fecha elegida</p>
+      <div class="reserva-container">
+        <div class="calendar-left">
+          <div class="calendar-container">
+            <div class="calendar__info">
+              <div class="calendar__prev" id="prev-month">&#9664;</div>
+              <div class="calendar__month" id="month">Septiembre</div>
+              <div class="calendar__year" id="year">2024</div>
+              <div class="calendar__next" id="next-month">&#9654;</div>
+            </div>
+
+            <div class="calendar__week">
+              <div class="calendar__day calendar__item">Lun</div>
+              <div class="calendar__day calendar__item">Mar</div>
+              <div class="calendar__day calendar__item">Mie</div>
+              <div class="calendar__day calendar__item">Jue</div>
+              <div class="calendar__day calendar__item">Vie</div>
+              <div class="calendar__day calendar__item">Sab</div>
+              <div class="calendar__day calendar__item">Dom</div>
+            </div>
+
+            <div class="calendar__dates" id="dates"></div>
+          </div>
+
+        </div>
+        <div class="hora-right">
+          <p>HORA</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/scripts/hamburger.js"></script>
+  <script src="/scripts/userHome.js"></script>
 </body>
+
 </html>

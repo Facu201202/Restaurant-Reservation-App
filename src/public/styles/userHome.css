@@ -1,0 +1,87 @@
+/*---------HEADER---------- */
+
+.header {
+    height: auto;
+    background-color: #db5a34;
+
+}
+
+.li-elements {
+    justify-content: center;
+
+}
+
+.li-items {
+    padding: 0 26px;
+}
+
+
+/*---------MAIN---------- */
+
+.main{
+    background-color: rgba(236, 236, 236, 0.76);
+    height: 90vh;
+    padding: 100px;
+}
+
+.container{
+    margin: auto;
+    padding: 50px;
+    background-color: white;
+    height: 100%;
+    width: 70%;
+}
+
+.reserva-container{
+    display: flex;
+}
+
+.calendar-left{
+    width: 50%;
+    border: 1px solid black;
+}
+
+.hora-right{
+    width: 50%;
+    background-color: blueviolet;
+}
+
+.container p{
+    font-size: larger;
+    margin: 20px 0;
+}
+
+
+/*---------RESPONSIVE---------- */
+
+
+/* dispositivos móviles medianos */
+@media (max-width: 768px) {
+
+    .li-elements,
+    .button-nav {
+        width: 20%;
+        height: 15vh;
+    }
+
+    .li-items {
+        padding: 0;
+    }
+
+
+}
+
+/* Estilos para tablets y dispositivos móviles grandes */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .li-elements,
+    .button-nav {
+        width: 16%;
+        height: 15vh;
+    }
+
+    .li-items {
+        padding: 0;
+    }
+
+}

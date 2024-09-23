@@ -16,21 +16,14 @@ export function createToken(data: UserInfo) {
 export function validarToken(req: Request, res: Response, next: NextFunction): void {
     try {
         const token = req.cookies.jwt;
-        if (!token) res.status(403).json({ mensaje: "Acceso denegado: No se proporcionó token" });
+        if (!token) res.redirect("/login")
 
         const validPaylod = jwt.verify(token, keySecret)
         console.log(validPaylod)
         next()
 
     } catch (err) {
-        res.status(401).json({
-            message: "TOken invalido",
-            error: err
-        })
+        res.redirect("/login")
     }
-
-
-
-
 
 }

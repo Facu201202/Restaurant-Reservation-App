@@ -8,4 +8,5 @@ router.get("/", (_req, res) => {
 });
 router.post("/register", user_controllers_1.createUser);
 router.post("/login", user_controllers_1.findUser);
+router.post("/logout", user_controllers_1.logout);
 exports.default = router;

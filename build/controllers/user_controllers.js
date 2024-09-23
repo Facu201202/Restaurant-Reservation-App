@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findUser = exports.createUser = void 0;
+exports.logout = exports.findUser = exports.createUser = void 0;
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
@@ -78,3 +78,11 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.findUser = findUser;
+const logout = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.cookie('jwt', '', { expires: new Date(0), httpOnly: true, path: '/' });
+    res.status(200).send({
+        message: "Logout exitoso",
+        redirect: "/login"
+    });
+});
+exports.logout = logout;

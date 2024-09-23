@@ -79,3 +79,14 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
         })
     }
 }
+
+
+export const logout = async (_req: Request, res: Response) => {
+
+    res.cookie('jwt', '', { expires: new Date(0), httpOnly: true, path: '/' });
+    res.status(200).send({
+        message: "Logout exitoso",
+        redirect: "/login"
+    })
+    
+}
