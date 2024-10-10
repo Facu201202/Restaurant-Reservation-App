@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logout = exports.findUser = exports.createUser = void 0;
+exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
@@ -78,6 +78,34 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.findUser = findUser;
+const getTable = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const hours = yield (0, db_1.traerTodo)("horas");
+    return res.status(200).send({
+        message: "Horarios encontrados",
+        hours: hours
+    });
+});
+exports.getTable = getTable;
+const findReservas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const reservas = yield (0, db_1.encontrarReservas)(req.body.fecha);
+        const mesas = yield (0, db_1.encontrarMesas)(req.body.cantidad);
+        const noDisponible = disponibilidad(reservas, mesas);
+        return res.status(200).send({
+            message: "Reservas encontradas",
+            reservas: reservas,
+            mesasNoDisponibles: noDisponible
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send({
+            message: "Error al buscar reservas",
+            error: err
+        });
+    }
+});
+exports.findReservas = findReservas;
 const logout = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.cookie('jwt', '', { expires: new Date(0), httpOnly: true, path: '/' });
     res.status(200).send({
@@ -86,3 +114,23 @@ const logout = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.logout = logout;
+const disponibilidad = (reservas, mesas) => {
+    // Agrupar reservas por hora
+    const gruposPorHora = reservas.reduce((acumulador, reserva) => {
+        if (!acumulador[reserva.hora_detalle]) {
+            acumulador[reserva.hora_detalle] = [];
+        }
+        acumulador[reserva.hora_detalle].push(reserva);
+        return acumulador;
+    }, {});
+    const idMesas = mesas.map((element) => element.id_mesa);
+    const horasNoDisponibles = [];
+    Object.keys(gruposPorHora).forEach(hora => {
+        const grupo = gruposPorHora[hora];
+        const noDisponible = idMesas.every(idMesa => grupo.some((reserva) => reserva.id_mesa === idMesa));
+        if (noDisponible) {
+            horasNoDisponibles.push(hora);
+        }
+    });
+    return horasNoDisponibles;
+};

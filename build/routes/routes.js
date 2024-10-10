@@ -9,4 +9,6 @@ router.get("/", (_req, res) => {
 router.post("/register", user_controllers_1.createUser);
 router.post("/login", user_controllers_1.findUser);
 router.post("/logout", user_controllers_1.logout);
+router.get("/hours", user_controllers_1.getTable);
+router.post("/reservas", user_controllers_1.findReservas);
 exports.default = router;

@@ -18,13 +18,14 @@
 
 /*---------MAIN---------- */
 
-.main{
+.main {
     background-color: rgba(236, 236, 236, 0.76);
     height: 90vh;
     padding: 100px;
 }
 
-.container{
+.container {
+    position: relative;
     margin: auto;
     padding: 50px;
     background-color: white;
@@ -32,25 +33,89 @@
     width: 70%;
 }
 
-.reserva-container{
+.reserva-container {
     display: flex;
+    justify-content: center;
 }
 
-.calendar-left{
-    width: 50%;
+.fecha-left {
+    padding: 20px;
+    width: 40%;
     border: 1px solid black;
+
 }
 
-.hora-right{
+.form-fecha {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    font-size: larger;
+}
+
+.form-fecha input {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: large;
+}
+
+.form-fecha-button {
+
+    margin: 10px auto;
+}
+
+.hora-right {
     width: 50%;
-    background-color: blueviolet;
 }
 
-.container p{
+.container p {
     font-size: larger;
     margin: 20px 0;
 }
 
+/*--------HORAS----------*/
+
+.hora-right {
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+
+.hour-element {
+    border: 1px solid red;
+}
+
+.disable {
+    color: rgba(114, 114, 114, 0.945);
+    text-decoration: line-through;
+}
+
+.enable:hover {
+    cursor: pointer;
+}
+
+.selected{
+    background-color: #db5a34;
+    color: white;
+}
+
+#reservar-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 50px;
+}
+
+#info-reserva {
+    font-size: medium;
+}
 
 /*---------RESPONSIVE---------- */
 

@@ -1,8 +1,9 @@
 import { Response, Request } from "express";
-import { agregar, traerUno } from "../config/db";
+import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas } from "../config/db";
 import { Usuario, UserInfo } from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
 import { createToken } from "../middlewares/auth";
+
 
 export const createUser = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -80,6 +81,39 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
     }
 }
 
+export const getTable = async (_req: Request, res: Response): Promise<Response> => {
+    const hours = await traerTodo("horas");
+    return res.status(200).send({
+        message: "Horarios encontrados",
+        hours: hours
+    })
+
+
+}
+
+export const findReservas = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const reservas = await encontrarReservas(req.body.fecha)
+        const mesas = await encontrarMesas(req.body.cantidad)
+
+        const noDisponible: string[] = disponibilidad(reservas, mesas);
+
+
+
+        return res.status(200).send({
+            message: "Reservas encontradas",
+            reservas: reservas,
+            mesasNoDisponibles: noDisponible
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(500).send({
+            message: "Error al buscar reservas",
+            error: err
+        })
+    }
+
+}
 
 export const logout = async (_req: Request, res: Response) => {
 
@@ -88,5 +122,36 @@ export const logout = async (_req: Request, res: Response) => {
         message: "Logout exitoso",
         redirect: "/login"
     })
-    
+
 }
+
+
+const disponibilidad = (reservas: any[], mesas: any[]): string[] => {
+    // Agrupar reservas por hora
+    const gruposPorHora = reservas.reduce((acumulador: any, reserva: any) => {
+        if (!acumulador[reserva.hora_detalle]) {
+            acumulador[reserva.hora_detalle] = [];
+        }
+        acumulador[reserva.hora_detalle].push(reserva);
+        return acumulador;
+    }, {});
+
+    const idMesas: number[] = mesas.map((element: any) => element.id_mesa);
+
+    const horasNoDisponibles: string[] = [];
+
+    Object.keys(gruposPorHora).forEach(hora => {
+        const grupo = gruposPorHora[hora];
+
+
+        const noDisponible = idMesas.every(idMesa =>
+            grupo.some((reserva: any) => reserva.id_mesa === idMesa)
+        );
+
+        if (noDisponible) {
+            horasNoDisponibles.push(hora);
+        }
+    });
+
+    return horasNoDisponibles
+};

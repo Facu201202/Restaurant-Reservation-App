@@ -7,7 +7,6 @@
   <title>Document</title>
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/userHome.css">
-  <link rel="stylesheet" href="/styles/calendar.css">
 </head>
 
 <body>
@@ -37,39 +36,28 @@
       <p>Seleccione el dia y la hora de la reserva, a continuación se muestran los horarios disponibles en base a la
         fecha elegida</p>
       <div class="reserva-container">
-        <div class="calendar-left">
-          <div class="calendar-container">
-            <div class="calendar__info">
-              <div class="calendar__prev" id="prev-month">&#9664;</div>
-              <div class="calendar__month" id="month"></div>
-              <div class="calendar__year" id="year"></div>
-              <div class="calendar__next" id="next-month">&#9654;</div>
-            </div>
-
-            <div class="calendar__week">
-              <div class="calendar__day calendar__item">Lun</div>
-              <div class="calendar__day calendar__item">Mar</div>
-              <div class="calendar__day calendar__item">Mie</div>
-              <div class="calendar__day calendar__item">Jue</div>
-              <div class="calendar__day calendar__item">Vie</div>
-              <div class="calendar__day calendar__item">Sab</div>
-              <div class="calendar__day calendar__item">Dom</div>
-            </div>
-
-            <div class="calendar__dates" id="dates"></div>
-          </div>
-
+        <div class="fecha-left">
+          <form class="form-fecha" >
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" id="fecha">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" min="1" max="6" name="cantidad" id="cantidad" placeholder="Cantidad">
+            <button class="form-fecha-button" id="form-fecha-button">Buscar</button>
+            <p id="message-form"></p>
+          </form>
         </div>
         <div class="hora-right">
-          <p>HORA</p>
+          <div class="grid-container" id="grid-container"></div>
+          <p id="info-reserva"></p>
         </div>
+        
       </div>
+      <button class="form-fecha-button" id="reservar-button">Reservar</button>
     </div>
   </main>
 
   <script src="/scripts/hamburger.js"></script>
   <script src="/scripts/userHome.js"></script>
-  <script src="/scripts/calendar.js"></script>
 </body>
 
 </html>

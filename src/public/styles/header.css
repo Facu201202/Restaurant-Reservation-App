@@ -70,7 +70,7 @@
 }
 
 
-.button-nav, .button-header, .button-about, .button-reserva {
+.button-nav, .button-header, .button-about, .button-reserva, .form-fecha-button{
     padding: 10px;
     background-color: #fea941;
     width: 160px;
@@ -85,7 +85,7 @@
     display: none;
 }
 
-.button-nav, .button-header, .button-about, .button-reserva:hover {
+.button-nav, .button-header, .button-about, .button-reserva:hover, .form-fecha-button:hover {
     cursor: pointer;
 }
 

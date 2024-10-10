@@ -13,3 +13,4 @@ export interface UserInfo {
     contraseña: string,
     rol: "usuario" | "admin"
 }
+
