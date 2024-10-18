@@ -1,5 +1,7 @@
+import { JwtPayload } from 'jsonwebtoken';
+
 export interface Usuario {
-    id?: number,
+    id_usuario?: number,
     nombre: string,
     apellido: string,
     usuario: string,
@@ -14,3 +16,17 @@ export interface UserInfo {
     rol: "usuario" | "admin"
 }
 
+export interface Reserva {
+    id_usuario? : number,
+    id_mesa: number,
+    cantidad: number,
+    fecha: string,
+    hora: number,
+    estado: "pendiente" | "aprobada" | "cancelada"
+}
+
+declare module 'express' {
+    export interface Request {
+      user?: UserInfo | JwtPayload;
+    }
+  }

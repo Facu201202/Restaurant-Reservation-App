@@ -19,7 +19,7 @@
 /*---------MAIN---------- */
 
 .main {
-    background-color: rgba(236, 236, 236, 0.76);
+    background-color: rgba(206, 197, 197, 0.678);
     height: 90vh;
     padding: 100px;
 }
@@ -106,12 +106,18 @@
     color: white;
 }
 
-#reservar-button {
+.reservar-container {
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 50px;
+    display: flex;
 }
+
+#reservar-button{
+    margin-left: 30px;
+}
+
 
 #info-reserva {
     font-size: medium;
@@ -123,6 +129,11 @@
 /* dispositivos móviles medianos */
 @media (max-width: 768px) {
 
+    .main {
+        padding: 50px 10px;
+        height: auto;
+    }
+
     .li-elements,
     .button-nav {
         width: 20%;
@@ -133,11 +144,69 @@
         padding: 0;
     }
 
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 530px;
+        height: 200%;
+    }
 
+    .container p {
+        text-align: center;
+        font-size: medium;
+    }
+
+    .reserva-container {
+        flex-direction: column;
+    }
+
+    .fecha-left {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+        margin-bottom: 20px;
+        font-size: medium;
+    }
+
+    .hora-right {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+        margin-bottom: 20px;
+        font-size: medium;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        font-size: medium;
+    }
+    
+    .reservar-container {
+        position: static;
+        margin: 15px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    #reservar-button{
+        margin: auto;
+    }
 }
 
 /* Estilos para tablets y dispositivos móviles grandes */
 @media (min-width: 768px) and (max-width: 1023px) {
+
+    .container {
+        padding: 20px;
+        width: 80%;
+    }
+
+    .container p {
+        text-align: center;
+        font-size: medium;
+    }
+
 
     .li-elements,
     .button-nav {
@@ -147,6 +216,71 @@
 
     .li-items {
         padding: 0;
+    }
+
+    .reserva-container {
+        flex-direction: column;
+    }
+
+    .fecha-left {
+        width: 70%;
+        margin: auto;
+        margin-bottom: 20px;
+        font-size: medium;
+    }
+
+    .hora-right {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: medium;
+    }
+    
+    .container {
+        height: 200%;
+    }
+
+    .main {
+        height: auto;
+    }
+    
+    .reservar-container {
+        position: static;
+        margin: 15px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    #reservar-button{
+        margin: auto;
+    }
+}
+
+/*pantallas de laptops pequeñas */
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+
+    .container {
+        padding: 25px;
+        width: 95%;
+    }
+
+    .grid-container {
+        font-size: large;
+    }
+
+    .form-fecha {
+        font-size: large;
+    }
+}
+
+
+
+/* pantallas de escritorio medianas */
+@media (min-width: 1280px) and (max-width: 1440px) {
+    .container {
+        padding: 50px;
+        width: 80%;
     }
 
 }

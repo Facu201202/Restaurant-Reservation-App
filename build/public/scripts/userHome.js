@@ -8,31 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const logoutBtn = document.getElementById("button-nav");
 const gridContainer = document.getElementById("grid-container");
 const fechaButton = document.getElementById("form-fecha-button");
 const reservarButton = document.getElementById("reservar-button");
 const infoReserva = document.getElementById("info-reserva");
 const messageForm = document.getElementById("message-form");
-logoutBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const res = yield fetch("http://localhost:3000/api/logout", {
-            method: 'POST',
-            credentials: "include"
-        });
-        if (res.ok) {
-            const response = yield res.json();
-            window.location.href = response.redirect;
-        }
-    }
-    catch (err) {
-        console.log("ERROR AL CERRAR SESION", err);
-    }
-}));
+const reservarMessage = document.getElementById("reservar-message");
+const fecha = document.getElementById("fecha");
+const cantidad = document.getElementById("cantidad");
+let selectHour;
 fechaButton.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const fecha = document.getElementById("fecha");
-        const cantidad = document.getElementById("cantidad");
         e.preventDefault();
         const data = {
             fecha: fecha.value,
@@ -46,10 +32,6 @@ fechaButton.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, f
             body: JSON.stringify(data)
         });
         const reservasJson = yield reservas.json();
-        const horas = [];
-        reservasJson.reservas.forEach((e) => {
-            horas.push(e.hora_detalle);
-        });
         createGrid(data.cantidad, data.fecha, reservasJson.mesasNoDisponibles);
     }
     catch (err) {
@@ -68,11 +50,11 @@ const getHours = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log("error al traer horarios", err);
     }
 });
-const createGrid = (cantidad, fecha, NoDisponibles) => __awaiter(void 0, void 0, void 0, function* () {
+const createGrid = (cantidad, fecha, blockHours) => __awaiter(void 0, void 0, void 0, function* () {
     const hours = yield getHours();
-    const blockHours = disableHours(hours, NoDisponibles);
-    if (!cantidad || !fecha) {
-        messageForm.textContent = `Complete los campos para iniciar la busqueda`;
+    const cantidadN = Number(cantidad);
+    if ((!cantidad || !fecha) || (cantidadN > 6 || cantidadN < 1)) {
+        messageForm.textContent = `Campos incompletos o erróneos para iniciar la búsqueda`;
         messageForm.style.color = "red";
         messageForm.style.fontSize = "medium";
         messageForm.style.textAlign = "center";
@@ -89,35 +71,49 @@ const createGrid = (cantidad, fecha, NoDisponibles) => __awaiter(void 0, void 0,
             else {
                 cell.classList.add("enable");
                 cell.addEventListener("click", () => {
-                    select(hour.hora, cell);
+                    select(hour, cell);
                 });
             }
             gridContainer.appendChild(cell);
         });
-        infoReserva.textContent = `Para ${cantidad} persona/s, quedan disponibles las siguentes horas el ${fecha}.`;
+        infoReserva.textContent = `Para ${cantidad} persona/s, hay disponibles las siguentes horas el ${fecha}.`;
         messageForm.textContent = ``;
     }
 });
-const disableHours = (allHours, notAvailableHours) => {
-    const blockHours = [];
-    allHours.forEach((hour, index) => {
-        if (notAvailableHours.includes(hour.hora)) {
-            for (let i = 0; i <= 4; i++) {
-                if (hour.hora[0] === "19" && allHours[index - 1].hora[0] === "10") {
-                    break;
-                }
-                else {
-                    blockHours.push(allHours[index + i].hora);
-                }
-            }
-        }
-    });
-    return blockHours;
-};
 const select = (hora, cell) => {
-    let selectHour = hora;
+    selectHour = hora;
     const gridElements = document.querySelectorAll(".hour-element");
     gridElements.forEach((item) => item.classList.remove("selected"));
     cell.classList.add("selected");
-    console.log(selectHour);
 };
+reservarButton.addEventListener('click', (e) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        e.preventDefault();
+        const reserva = {
+            fecha: fecha.value,
+            cantidad: cantidad.value,
+            hora: selectHour
+        };
+        const reservar = yield fetch("http://localhost:3000/api/alta/reserva", {
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                "content-Type": "application/json"
+            },
+            body: JSON.stringify(reserva)
+        });
+        const resJson = yield reservar.json();
+        if (!reservar.ok) {
+            throw new Error(resJson.message);
+        }
+        reservarMessage.style.color = "green";
+        reservarMessage.textContent = "Reserva realizada con exito, puede ver su reservar en la seccion mis reservas";
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
+    }
+    catch (err) {
+        reservarMessage.style.color = "red";
+        reservarMessage.textContent = "Error al realizar reserva";
+    }
+}));

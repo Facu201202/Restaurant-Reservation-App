@@ -1,0 +1,41 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    font-size: larger;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.container p {
+    margin: 0;
+}
+
+.main {
+    height: auto;
+    min-height: 100vh;
+}
+
+
+.card-title{
+    font-size: x-large;
+    padding: 20px;
+    background-color: rgb(63, 62, 62);
+    color: white;
+}
+
+.card-body{
+    padding: 10px;
+}
+
+.card-item{
+    margin: 15px 0;
+}
+
+.estado-container{
+    display: flex;
+}
+
+.estado{
+    background-color: yellow;
+}

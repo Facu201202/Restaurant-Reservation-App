@@ -35,3 +35,6 @@ app.get("/register", (_req, res) => {
 app.get("/user", auth_1.validarToken, (_req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'public', 'userPages', 'home.html'));
 });
+app.get("/myReserve", auth_1.validarToken, (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'public', 'userPages', 'myReserve.html'));
+});

@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/userHome.css">
+  <link rel="stylesheet" href="/styles/myReserve.css">
 </head>
 
 <body>
@@ -32,37 +33,12 @@
 
   </header>
   <main class="main">
-    <div class="container">
-      <p>Seleccione el dia y la hora de la reserva, a continuación se muestran los horarios disponibles en base a la
-        fecha elegida</p>
-      <div class="reserva-container">
-        <div class="fecha-left">
-          <form class="form-fecha">
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha">
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" min="1" max="6" name="cantidad" id="cantidad" placeholder="Cantidad">
-            <button class="form-fecha-button" id="form-fecha-button">Buscar</button>
-            <p id="message-form"></p>
-          </form>
-        </div>
-        <div class="hora-right">
-          <div class="grid-container" id="grid-container"></div>
-          <p id="info-reserva"></p>
-        </div>
-
-      </div>
-      <div class="reservar-container">
-        <p class="reservar-message" id="reservar-message"></p>
-        <button class="form-fecha-button" id="reservar-button">Reservar</button>
-
-      </div>
-
+    <div class="container" id="card-reserva-container">
     </div>
   </main>
 
   <script src="/scripts/hamburger.js"></script>
-  <script src="/scripts/userHome.js"></script>
+  <script src="/scripts/myReserve.js"></script>
   <script src="/scripts/logout.js"></script>
 </body>
 

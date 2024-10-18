@@ -1,33 +1,16 @@
-const logoutBtn = document.getElementById("button-nav") as HTMLButtonElement
 const gridContainer = document.getElementById("grid-container") as HTMLDivElement
 const fechaButton = document.getElementById("form-fecha-button") as HTMLButtonElement
 const reservarButton = document.getElementById("reservar-button") as HTMLButtonElement
 const infoReserva = document.getElementById("info-reserva") as HTMLParagraphElement
 const messageForm = document.getElementById("message-form") as HTMLParagraphElement
+const reservarMessage = document.getElementById("reservar-message") as HTMLParagraphElement
+const fecha = document.getElementById("fecha") as HTMLInputElement;
+const cantidad = document.getElementById("cantidad") as HTMLInputElement;
+let selectHour: Hours
 
-logoutBtn.addEventListener("click", async () => {
-    try {
-
-        const res: Response = await fetch("http://localhost:3000/api/logout", {
-            method: 'POST',
-            credentials: "include"
-        })
-
-        if (res.ok) {
-            const response = await res.json()
-            window.location.href = response.redirect
-        }
-
-    } catch (err) {
-        console.log("ERROR AL CERRAR SESION", err)
-    }
-})
 
 fechaButton.addEventListener("click", async (e) => {
     try {
-        const fecha = document.getElementById("fecha") as HTMLInputElement;
-        const cantidad = document.getElementById("cantidad") as HTMLInputElement;
-
         e.preventDefault()
         const data = {
             fecha: fecha.value,
@@ -43,11 +26,7 @@ fechaButton.addEventListener("click", async (e) => {
         })
 
         const reservasJson = await reservas.json();
-        const horas: string[] = [];
-        reservasJson.reservas.forEach((e: any) => {
-            horas.push(e.hora_detalle)
-        })
-        createGrid( data.cantidad, data.fecha, reservasJson.mesasNoDisponibles);
+        createGrid(data.cantidad, data.fecha, reservasJson.mesasNoDisponibles);
 
     } catch (err) {
         console.log("error al mostar horas", err)
@@ -76,12 +55,11 @@ interface Hours {
 }
 
 
-const createGrid = async ( cantidad: string, fecha: string, NoDisponibles: string[]) => {
+const createGrid = async (cantidad: string, fecha: string, blockHours: string[]) => {
     const hours: Hours[] = await getHours();
-    const blockHours: string[] = disableHours(hours, NoDisponibles)
-
-    if (!cantidad || !fecha) {
-        messageForm.textContent = `Complete los campos para iniciar la busqueda`
+    const cantidadN: number = Number(cantidad)
+    if ((!cantidad || !fecha) || (cantidadN > 6 || cantidadN < 1)) {
+        messageForm.textContent = `Campos incompletos o erróneos para iniciar la búsqueda`
         messageForm.style.color = "red"
         messageForm.style.fontSize = "medium"
         messageForm.style.textAlign = "center"
@@ -96,39 +74,61 @@ const createGrid = async ( cantidad: string, fecha: string, NoDisponibles: strin
             } else {
                 cell.classList.add("enable")
                 cell.addEventListener("click", () => {
-                    select(hour.hora, cell)
+                    select(hour, cell)
                 })
             }
             gridContainer.appendChild(cell)
         });
 
-        infoReserva.textContent = `Para ${cantidad} persona/s, quedan disponibles las siguentes horas el ${fecha}.`
+        infoReserva.textContent = `Para ${cantidad} persona/s, hay disponibles las siguentes horas el ${fecha}.`
         messageForm.textContent = ``
     }
 }
 
-const disableHours = (allHours: Hours[], notAvailableHours: string[]): string[] =>{
-    const blockHours: string[] = [];
-    allHours.forEach((hour: Hours, index: number) => {
-        if(notAvailableHours.includes(hour.hora)){
-            for(let i = 0; i <= 4; i++){
-                if(hour.hora[0] === "19" && allHours[index - 1].hora[0] === "10"){
-                    break
-                }else{
-                    blockHours.push(allHours[index + i].hora) 
-                }
-            }
-        }   
-    })
 
-    return blockHours
-}
-
-const select = (hora: string, cell: HTMLDivElement) => {
-    let selectHour = hora;
+const select = (hora: Hours, cell: HTMLDivElement) => {
+    selectHour = hora
     const gridElements = document.querySelectorAll(".hour-element") as NodeListOf<HTMLDivElement>;
 
     gridElements.forEach((item: HTMLDivElement) => item.classList.remove("selected"));
     cell.classList.add("selected")
-    console.log(selectHour)
 }
+
+reservarButton.addEventListener('click', async (e) => {
+    try {
+        e.preventDefault()
+
+        const reserva = {
+            fecha: fecha.value,
+            cantidad: cantidad.value,
+            hora: selectHour
+        }
+
+        const reservar = await fetch("http://localhost:3000/api/alta/reserva", {
+
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                "content-Type": "application/json"
+            },
+            body: JSON.stringify(reserva)
+        })
+
+        const resJson =  await reservar.json()
+        if (!reservar.ok) {
+            throw new Error(resJson.message)
+        }
+
+        reservarMessage.style.color = "green"
+        reservarMessage.textContent = "Reserva realizada con exito, puede ver su reservar en la seccion mis reservas"
+
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000)
+
+    } catch (err) {
+        reservarMessage.style.color = "red"
+        reservarMessage.textContent = "Error al realizar reserva"
+    }
+
+})

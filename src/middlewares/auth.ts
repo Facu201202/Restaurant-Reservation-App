@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken"
+import jwt, { JwtPayload } from "jsonwebtoken"
 import dotenv from "dotenv"
 import path from 'path';
 import { UserInfo } from "../interfaces/interfaces";
@@ -18,12 +18,12 @@ export function validarToken(req: Request, res: Response, next: NextFunction): v
         const token = req.cookies.jwt;
         if (!token) res.redirect("/login")
 
-        const validPaylod = jwt.verify(token, keySecret)
-        console.log(validPaylod)
+        const validPaylod = jwt.verify(token, keySecret) as JwtPayload
+        req.user = validPaylod
         next()
 
     } catch (err) {
-        res.redirect("/login")
+        return res.redirect("/login")
     }
 
 }

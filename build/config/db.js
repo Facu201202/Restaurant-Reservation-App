@@ -8,6 +8,8 @@ exports.agregar = agregar;
 exports.traerTodo = traerTodo;
 exports.encontrarReservas = encontrarReservas;
 exports.encontrarMesas = encontrarMesas;
+exports.agregarReserva = agregarReserva;
+exports.buscarReservas = buscarReservas;
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
@@ -65,6 +67,27 @@ function encontrarReservas(fecha) {
 function encontrarMesas(cantidad) {
     return new Promise((resolve, reject) => {
         connection.query(`SELECT * FROM mesas WHERE cantidad_min = ? OR cantidad_max = ?`, [cantidad, cantidad], (error, result) => {
+            error ? reject(error) : resolve(result);
+        });
+    });
+}
+function agregarReserva(reserva) {
+    return new Promise((resolve, reject) => {
+        const values = [reserva.id_usuario, reserva.id_mesa, reserva.cantidad, reserva.fecha, reserva.hora, reserva.estado];
+        connection.query(`INSERT INTO reservas_realizadas (id_usuario, id_mesa, cantidad, fecha, hora, estado) VALUES (?, ?, ?, ?, ?, ?)`, values, (error, result) => {
+            error ? reject(error) : resolve(result);
+        });
+    });
+}
+function buscarReservas(user) {
+    return new Promise((resolve, reject) => {
+        const query = `
+        SELECT reservas_realizadas.*, horas.hora AS hora_detalle 
+        FROM reservas_realizadas 
+        JOIN horas ON reservas_realizadas.hora = horas.id_hora 
+        WHERE reservas_realizadas.id_usuario = ?
+    `;
+        connection.query(query, user, (error, result) => {
             error ? reject(error) : resolve(result);
         });
     });

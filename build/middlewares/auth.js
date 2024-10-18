@@ -19,10 +19,10 @@ function validarToken(req, res, next) {
         if (!token)
             res.redirect("/login");
         const validPaylod = jsonwebtoken_1.default.verify(token, keySecret);
-        console.log(validPaylod);
+        req.user = validPaylod;
         next();
     }
     catch (err) {
-        res.redirect("/login");
+        return res.redirect("/login");
     }
 }
