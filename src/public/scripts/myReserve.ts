@@ -40,8 +40,7 @@ const reservasCard = (reservas: any[]) =>{
         iconTrash.classList.add("fa-regular", "fa-trash-can")
 
         iconTrash.addEventListener('click', () => {
-            const confirmed = confirm(`¿Estás seguro de que deseas cancelar la reserva del ${fechaAdaptada} ?`);
-            console.log(confirmed)
+            cancelarReserva(fechaAdaptada, reserva.id_reserva)
         })
 
         divTitle.appendChild(title)
@@ -107,4 +106,36 @@ const reservasCard = (reservas: any[]) =>{
     })
     
 
+}
+
+
+const cancelarReserva = async (fecha: string, reserva: number) => {
+    const confirmed = confirm(`¿Estás seguro de que deseas cancelar la reserva del ${fecha} ?`);
+
+    if(confirmed){
+        try{
+            const respuesta =  await fetch("http://localhost:3000/api/misReservas", {
+                method: 'DELETE',
+                headers: {
+                    "content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: reserva
+                })
+            })
+
+            const resJSon = await respuesta.json()
+            alert(resJSon.message)
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500);
+            
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }else{
+        window.location.reload()
+    }
 }

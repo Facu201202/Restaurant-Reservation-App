@@ -96,3 +96,11 @@ export function buscarReservas(user: any): Promise<OkPacket> {
         })
     })
 }
+
+export function eliminarReserva(id: number): Promise<OkPacket> {
+    return new Promise((resolve, reject) => {
+        connection.query('DELETE FROM reservas_realizadas WHERE id_reserva = ?', id, (error, result) => {
+            error ? reject(error) : resolve(result)
+        })
+    })
+}

@@ -43,8 +43,7 @@ const reservasCard = (reservas) => {
         const iconTrash = document.createElement("i");
         iconTrash.classList.add("fa-regular", "fa-trash-can");
         iconTrash.addEventListener('click', () => {
-            const confirmed = confirm(`¿Estás seguro de que deseas cancelar la reserva del ${fechaAdaptada} ?`);
-            console.log(confirmed);
+            cancelarReserva(fechaAdaptada, reserva.id_reserva);
         });
         divTitle.appendChild(title);
         divTitle.appendChild(iconTrash);
@@ -96,3 +95,30 @@ const reservasCard = (reservas) => {
         reservasContainer.appendChild(divCard);
     });
 };
+const cancelarReserva = (fecha, reserva) => __awaiter(void 0, void 0, void 0, function* () {
+    const confirmed = confirm(`¿Estás seguro de que deseas cancelar la reserva del ${fecha} ?`);
+    if (confirmed) {
+        try {
+            const respuesta = yield fetch("http://localhost:3000/api/misReservas", {
+                method: 'DELETE',
+                headers: {
+                    "content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: reserva
+                })
+            });
+            const resJSon = yield respuesta.json();
+            alert(resJSon.message);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    else {
+        window.location.reload();
+    }
+});

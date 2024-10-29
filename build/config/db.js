@@ -10,6 +10,7 @@ exports.encontrarReservas = encontrarReservas;
 exports.encontrarMesas = encontrarMesas;
 exports.agregarReserva = agregarReserva;
 exports.buscarReservas = buscarReservas;
+exports.eliminarReserva = eliminarReserva;
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
@@ -88,6 +89,13 @@ function buscarReservas(user) {
         WHERE reservas_realizadas.id_usuario = ?
     `;
         connection.query(query, user, (error, result) => {
+            error ? reject(error) : resolve(result);
+        });
+    });
+}
+function eliminarReserva(id) {
+    return new Promise((resolve, reject) => {
+        connection.query('DELETE FROM reservas_realizadas WHERE id_reserva = ?', id, (error, result) => {
             error ? reject(error) : resolve(result);
         });
     });

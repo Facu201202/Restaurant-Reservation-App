@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
+exports.bajaReserva = exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
+const mailer_1 = require("../helpers/mailer");
 /*Funcion para crear un usuario encriptado */
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -207,7 +208,20 @@ const altaReserva = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             hora: hora.id_hora,
             estado: "pendiente"
         };
+        const createInfoMessage = {
+            nombre: user[0].nombre,
+            apellido: user[0].apellido,
+            correo: user[0].correo,
+            cantidad: cantidad,
+            fecha: fecha,
+            hora: hora.hora,
+            mesa: mesasLibres[0]
+        };
         yield (0, db_1.agregarReserva)(reserva);
+        const mail = yield (0, mailer_1.messageAltaReserva)(createInfoMessage);
+        if (!mail) {
+            throw new Error("Error al mandar el mail");
+        }
         return res.status(200).send({
             message: "Reserva realizada con exito"
         });
@@ -237,3 +251,18 @@ const verReservas = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.verReservas = verReservas;
+const bajaReserva = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const reserva = req.body.id;
+        yield (0, db_1.eliminarReserva)(reserva);
+        return res.status(200).send({
+            message: "Reserva eliminada con exito"
+        });
+    }
+    catch (err) {
+        return res.status(500).send({
+            message: "Error al borrar reserva:" + err
+        });
+    }
+});
+exports.bajaReserva = bajaReserva;

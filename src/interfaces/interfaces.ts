@@ -25,8 +25,20 @@ export interface Reserva {
     estado: "pendiente" | "aprobada" | "cancelada"
 }
 
+
+export interface InfoMessage {
+    nombre: string,
+    apellido: string,
+    correo: string,
+    cantidad: number,
+    fecha: string,
+    hora: string,
+    mesa: number
+}
+
 declare module 'express' {
     export interface Request {
       user?: UserInfo | JwtPayload;
     }
   }
+  

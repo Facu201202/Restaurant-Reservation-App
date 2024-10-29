@@ -1,8 +1,9 @@
 import { Response, Request } from "express";
-import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas } from "../config/db";
-import { Usuario, UserInfo, Reserva } from "../interfaces/interfaces";
+import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva } from "../config/db";
+import { Usuario, UserInfo, Reserva, InfoMessage } from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
 import { createToken } from "../middlewares/auth";
+import { messageAltaReserva } from "../helpers/mailer";
 
 
 
@@ -223,6 +224,8 @@ const mesasDisponibles = (hora: string, mesas: number[], reservas: any): number[
     return mesas.filter((idMesa) => !mesasReservadas.includes(idMesa))
 }
 
+
+
 export const altaReserva = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { fecha, cantidad, hora }: { fecha: string, cantidad: number, hora: any } = req.body;
@@ -249,8 +252,25 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
             estado: "pendiente"
         }
 
+        const createInfoMessage: InfoMessage = {
+            nombre: user[0].nombre,
+            apellido: user[0].apellido,
+            correo: user[0].correo,
+            cantidad: cantidad,
+            fecha: fecha,
+            hora: hora.hora,
+            mesa: mesasLibres[0]
+        }
 
         await agregarReserva(reserva)
+
+        const mail = await messageAltaReserva(createInfoMessage)
+
+        if(!mail){
+            throw new Error("Error al mandar el mail")
+        }
+        
+        
 
         return res.status(200).send({
             message: "Reserva realizada con exito"
@@ -279,6 +299,21 @@ export const verReservas = async (req: Request, res: Response): Promise<Response
         console.log(err)
         return res.status(500).send({
             message: "Error al buscar reservas", err
+        })
+    }
+}
+
+
+export const bajaReserva = async (req: Request, res: Response): Promise<Response> => {
+    try{
+        const reserva = req.body.id
+        await eliminarReserva(reserva)
+        return res.status(200).send({
+            message: "Reserva eliminada con exito"
+        })
+    }catch(err){
+        return res.status(500).send({
+            message: "Error al borrar reserva:" + err
         })
     }
 }
