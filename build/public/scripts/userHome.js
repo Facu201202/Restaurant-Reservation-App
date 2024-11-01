@@ -89,6 +89,8 @@ const select = (hora, cell) => {
 reservarButton.addEventListener('click', (e) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         e.preventDefault();
+        reservarMessage.style.color = "orange";
+        reservarMessage.textContent = "Realizando Reserva...";
         const reserva = {
             fecha: fecha.value,
             cantidad: cantidad.value,

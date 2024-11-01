@@ -13,7 +13,7 @@ export interface Usuario {
 export interface UserInfo {
     usuario: string,
     contraseña: string,
-    rol: "usuario" | "admin"
+    scope: 1 | 2
 }
 
 export interface Reserva {

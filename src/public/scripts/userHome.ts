@@ -98,6 +98,9 @@ reservarButton.addEventListener('click', async (e) => {
     try {
         e.preventDefault()
 
+        reservarMessage.style.color = "orange"
+        reservarMessage.textContent = "Realizando Reserva..."
+
         const reserva = {
             fecha: fecha.value,
             cantidad: cantidad.value,
@@ -130,5 +133,4 @@ reservarButton.addEventListener('click', async (e) => {
         reservarMessage.style.color = "red"
         reservarMessage.textContent = "Error al realizar reserva"
     }
-
 })

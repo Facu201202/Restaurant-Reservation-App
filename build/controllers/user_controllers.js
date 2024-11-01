@@ -57,10 +57,11 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "Usuario no encontrado"
             });
         }
+        const rol = user[0].rol === "usuario" ? 2 : 1;
         const userInfo = {
             usuario: user[0].usuario,
             contraseña: user[0].contrasenia,
-            rol: user[0].rol
+            scope: rol
         };
         const checkPassword = yield bcryptjs_1.default.compare(req.body.contraseña, userInfo.contraseña);
         const checkUser = req.body.usuario === userInfo.usuario;
@@ -74,14 +75,25 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "Contraseña incorrecta"
             });
         }
-        const token = (0, auth_1.createToken)(userInfo);
+        //Define que tipo de rol lleva el token
+        let token;
+        let redirect;
+        if (rol === 2) {
+            token = (0, auth_1.createToken)(userInfo);
+            redirect = "/user";
+        }
+        else {
+            token = (0, auth_1.createAdminToken)(userInfo);
+            redirect = "/admin";
+        }
         res.cookie("jwt", token, {
             httpOnly: true,
             secure: true,
         });
+        //retorna el estado de la peticion mas la ubicacion de redireccionamiento
         return res.status(200).send({
             message: "Login correcto",
-            redirect: "/user"
+            redirect: redirect
         });
     }
     catch (err) {

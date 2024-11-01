@@ -1,10 +1,8 @@
 import express from "express";
 import path from 'path';
 import routes from "./routes/routes";
-import { validarToken } from "./middlewares/auth";
+import { validarAdminToken, validarToken } from "./middlewares/auth";
 import cookieParser from "cookie-parser"
- 
-
 
 const PORT = 3000;
 
@@ -29,11 +27,9 @@ app.get('/inicio', (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
 app.get("/login", (_req, res) =>{
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
 })
-
 
 app.get("/register", (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'))
@@ -49,3 +45,10 @@ app.get("/user", validarToken, (_req, res) => {
 app.get("/myReserve", validarToken, (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'userPages', 'myReserve.html'))
 })
+
+
+//rutas admin 
+
+app.get("/admin", validarAdminToken, (_req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'adminPages', 'home.html'))
+}) 

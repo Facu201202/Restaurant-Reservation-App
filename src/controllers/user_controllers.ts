@@ -2,7 +2,7 @@ import { Response, Request } from "express";
 import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva } from "../config/db";
 import { Usuario, UserInfo, Reserva, InfoMessage } from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
-import { createToken } from "../middlewares/auth";
+import { createToken, createAdminToken } from "../middlewares/auth";
 import { messageAltaReserva } from "../helpers/mailer";
 
 
@@ -58,10 +58,12 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
             });
         }
 
+        const rol = user[0].rol === "usuario" ? 2 : 1;
+
         const userInfo: UserInfo = {
             usuario: user[0].usuario,
             contraseña: user[0].contrasenia,
-            rol: user[0].rol
+            scope: rol
         };
 
 
@@ -81,16 +83,29 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
             });
         }
 
-        const token = createToken(userInfo);
+        //Define que tipo de rol lleva el token
+
+        let token: string;
+        let redirect: string;
+
+        if (rol === 2) {
+            token = createToken(userInfo)
+            redirect = "/user"
+        } else {
+            token = createAdminToken(userInfo)
+            redirect = "/admin"
+        }
 
         res.cookie("jwt", token, {
             httpOnly: true,
             secure: true,
         });
 
+        //retorna el estado de la peticion mas la ubicacion de redireccionamiento
+
         return res.status(200).send({
             message: "Login correcto",
-            redirect: "/user"
+            redirect: redirect
         });
 
     } catch (err) {
@@ -266,11 +281,9 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
 
         const mail = await messageAltaReserva(createInfoMessage)
 
-        if(!mail){
+        if (!mail) {
             throw new Error("Error al mandar el mail")
         }
-        
-        
 
         return res.status(200).send({
             message: "Reserva realizada con exito"
@@ -286,7 +299,7 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
 
 
 export const verReservas = async (req: Request, res: Response): Promise<Response> => {
-    try{
+    try {
         const user = await traerUno(req.user?.usuario);
         const userReserves = await buscarReservas(user[0].id_usuario)
 
@@ -295,7 +308,7 @@ export const verReservas = async (req: Request, res: Response): Promise<Response
             reservas: userReserves
         })
 
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return res.status(500).send({
             message: "Error al buscar reservas", err
@@ -305,13 +318,13 @@ export const verReservas = async (req: Request, res: Response): Promise<Response
 
 
 export const bajaReserva = async (req: Request, res: Response): Promise<Response> => {
-    try{
+    try {
         const reserva = req.body.id
         await eliminarReserva(reserva)
         return res.status(200).send({
             message: "Reserva eliminada con exito"
         })
-    }catch(err){
+    } catch (err) {
         return res.status(500).send({
             message: "Error al borrar reserva:" + err
         })
