@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva } from "../config/db";
+import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva, actualizarReserva } from "../config/db";
 import { Usuario, UserInfo, Reserva, InfoMessage } from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
 import { createToken, createAdminToken } from "../middlewares/auth";
@@ -93,7 +93,7 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
             redirect = "/user"
         } else {
             token = createAdminToken(userInfo)
-            redirect = "/admin"
+            redirect = "/adminToday"
         }
 
         res.cookie("jwt", token, {
@@ -264,7 +264,7 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
             cantidad: cantidad,
             fecha: fecha,
             hora: hora.id_hora,
-            estado: "pendiente"
+            estado: "Pendiente"
         }
 
         const createInfoMessage: InfoMessage = {
@@ -327,6 +327,54 @@ export const bajaReserva = async (req: Request, res: Response): Promise<Response
     } catch (err) {
         return res.status(500).send({
             message: "Error al borrar reserva:" + err
+        })
+    }
+}
+
+
+export const reserveToday = async (req:Request, res: Response): Promise<Response> =>{
+    try{
+        const fecha = req.body.date
+        const reservas = await encontrarReservas(fecha)
+
+        let totalReservas = reservas.map(reserva => ({
+            id: reserva.id_reserva,
+            hora: reserva.hora_detalle,
+            nombre: reserva.nombre,
+            apellido: reserva.apellido,
+            mesa: reserva.id_mesa,
+            cantidad: reserva.cantidad,
+            estado: reserva.estado
+        }))
+
+        
+        return res.status(200).send({
+            message: `Reservas del dia ${fecha}`,
+            today: totalReservas
+        })
+
+    }catch(err){
+        return res.status(400).send({
+            message: "Error a buscar reservas del dia",
+            Error: err
+        })
+    }
+   
+
+
+}
+
+
+export const updateReserve = async (req: Request, res:Response): Promise<Response> => {
+    try{
+        await actualizarReserva(req.body.id, req.body.status)
+        return res.status(200).send({
+            message: "Reserva modificada con exito"
+        })
+
+    }catch(err){
+        return res.status(500).send({
+            message: "Error al modificar la reserva" + err
         })
     }
 }

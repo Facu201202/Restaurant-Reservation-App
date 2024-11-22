@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bajaReserva = exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
+exports.updateReserve = exports.reserveToday = exports.bajaReserva = exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
@@ -84,7 +84,7 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         else {
             token = (0, auth_1.createAdminToken)(userInfo);
-            redirect = "/admin";
+            redirect = "/adminToday";
         }
         res.cookie("jwt", token, {
             httpOnly: true,
@@ -218,7 +218,7 @@ const altaReserva = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             cantidad: cantidad,
             fecha: fecha,
             hora: hora.id_hora,
-            estado: "pendiente"
+            estado: "Pendiente"
         };
         const createInfoMessage = {
             nombre: user[0].nombre,
@@ -278,3 +278,43 @@ const bajaReserva = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.bajaReserva = bajaReserva;
+const reserveToday = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fecha = req.body.date;
+        const reservas = yield (0, db_1.encontrarReservas)(fecha);
+        let totalReservas = reservas.map(reserva => ({
+            id: reserva.id_reserva,
+            hora: reserva.hora_detalle,
+            nombre: reserva.nombre,
+            apellido: reserva.apellido,
+            mesa: reserva.id_mesa,
+            cantidad: reserva.cantidad,
+            estado: reserva.estado
+        }));
+        return res.status(200).send({
+            message: `Reservas del dia ${fecha}`,
+            today: totalReservas
+        });
+    }
+    catch (err) {
+        return res.status(400).send({
+            message: "Error a buscar reservas del dia",
+            Error: err
+        });
+    }
+});
+exports.reserveToday = reserveToday;
+const updateReserve = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield (0, db_1.actualizarReserva)(req.body.id, req.body.status);
+        return res.status(200).send({
+            message: "Reserva modificada con exito"
+        });
+    }
+    catch (err) {
+        return res.status(500).send({
+            message: "Error al modificar la reserva" + err
+        });
+    }
+});
+exports.updateReserve = updateReserve;

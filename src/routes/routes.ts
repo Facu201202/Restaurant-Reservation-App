@@ -1,6 +1,6 @@
 import {Router, Request, Response} from "express";
-import { createUser, findUser, getTable, logout, findReservas, altaReserva, verReservas, bajaReserva } from "../controllers/user_controllers";
-import { validarToken } from "../middlewares/auth";
+import { createUser, findUser, getTable, logout, findReservas, altaReserva, verReservas, bajaReserva, reserveToday, updateReserve} from "../controllers/user_controllers";
+import { validarToken, validarAdminToken } from "../middlewares/auth";
 const router = Router()
 
 
@@ -19,6 +19,8 @@ router.post("/reservas", findReservas)
 router.post("/alta/reserva", validarToken, altaReserva)
 router.post("/misReservas", validarToken, verReservas)
 router.delete("/misReservas", validarToken, bajaReserva)
+router.post("/today", reserveToday)
+router.post("/updateReserve",validarAdminToken, updateReserve )
 
 
 export default router

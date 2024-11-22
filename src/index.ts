@@ -49,6 +49,6 @@ app.get("/myReserve", validarToken, (_req, res) => {
 
 //rutas admin 
 
-app.get("/admin", validarAdminToken, (_req, res) => {
+app.get("/adminToday", validarAdminToken, (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'adminPages', 'home.html'))
 }) 

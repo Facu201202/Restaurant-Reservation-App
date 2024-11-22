@@ -74,14 +74,14 @@
     margin-right: 10px;
 }
 
-.pendiente {
+.Pendiente {
     padding: 4px;
     border-radius: 7px;
     background-color: var(--pendiente);
 }
 
 
-.aprobada {
+.Aprobada {
     padding: 4px;
     border-radius: 7px;
     background-color: var(--aprobada);
@@ -89,7 +89,7 @@
 }
 
 
-.cancelada {
+.Cancelada {
     padding: 4px;
     border-radius: 7px;
     background-color: var(--cancelada);

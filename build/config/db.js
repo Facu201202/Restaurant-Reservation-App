@@ -11,6 +11,7 @@ exports.encontrarMesas = encontrarMesas;
 exports.agregarReserva = agregarReserva;
 exports.buscarReservas = buscarReservas;
 exports.eliminarReserva = eliminarReserva;
+exports.actualizarReserva = actualizarReserva;
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
@@ -55,9 +56,10 @@ function traerTodo(tabla) {
 function encontrarReservas(fecha) {
     return new Promise((resolve, reject) => {
         const query = `
-                SELECT reservas_realizadas.*, horas.hora AS hora_detalle 
+                SELECT reservas_realizadas.*, horas.hora AS hora_detalle, usuarios.nombre AS nombre, usuarios.apellido AS apellido
                 FROM reservas_realizadas 
-                JOIN horas ON reservas_realizadas.hora = horas.id_hora 
+                JOIN horas ON reservas_realizadas.hora = horas.id_hora
+                JOIN usuarios ON reservas_realizadas.id_usuario = usuarios.id_usuario
                 WHERE reservas_realizadas.fecha = ?
             `;
         connection.query(query, fecha, (error, result) => {
@@ -96,6 +98,13 @@ function buscarReservas(user) {
 function eliminarReserva(id) {
     return new Promise((resolve, reject) => {
         connection.query('DELETE FROM reservas_realizadas WHERE id_reserva = ?', id, (error, result) => {
+            error ? reject(error) : resolve(result);
+        });
+    });
+}
+function actualizarReserva(id, status) {
+    return new Promise((resolve, reject) => {
+        connection.query("UPDATE reservas_realizadas SET estado = ? WHERE id_reserva = ?", [status, id], (error, result) => {
             error ? reject(error) : resolve(result);
         });
     });

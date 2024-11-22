@@ -53,9 +53,10 @@ export function traerTodo(tabla: string): Promise<OkPacket> {
 export function encontrarReservas(fecha: string): Promise<any[]> {
     return new Promise((resolve, reject) => {
         const query = `
-                SELECT reservas_realizadas.*, horas.hora AS hora_detalle 
+                SELECT reservas_realizadas.*, horas.hora AS hora_detalle, usuarios.nombre AS nombre, usuarios.apellido AS apellido
                 FROM reservas_realizadas 
-                JOIN horas ON reservas_realizadas.hora = horas.id_hora 
+                JOIN horas ON reservas_realizadas.hora = horas.id_hora
+                JOIN usuarios ON reservas_realizadas.id_usuario = usuarios.id_usuario
                 WHERE reservas_realizadas.fecha = ?
             `
 
@@ -100,6 +101,14 @@ export function buscarReservas(user: any): Promise<OkPacket> {
 export function eliminarReserva(id: number): Promise<OkPacket> {
     return new Promise((resolve, reject) => {
         connection.query('DELETE FROM reservas_realizadas WHERE id_reserva = ?', id, (error, result) => {
+            error ? reject(error) : resolve(result)
+        })
+    })
+}
+
+export function actualizarReserva(id: number, status: string): Promise<OkPacket>{
+    return new Promise((resolve, reject) =>{
+        connection.query("UPDATE reservas_realizadas SET estado = ? WHERE id_reserva = ?", [status, id], (error, result) => {
             error ? reject(error) : resolve(result)
         })
     })

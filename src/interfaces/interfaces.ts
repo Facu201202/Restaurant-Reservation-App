@@ -22,7 +22,7 @@ export interface Reserva {
     cantidad: number,
     fecha: string,
     hora: number,
-    estado: "pendiente" | "aprobada" | "cancelada"
+    estado: "Pendiente" | "Aprobada" | "Cancelada" | "Finalizada"
 }
 
 

@@ -39,6 +39,6 @@ app.get("/myReserve", auth_1.validarToken, (_req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'public', 'userPages', 'myReserve.html'));
 });
 //rutas admin 
-app.get("/admin", auth_1.validarAdminToken, (_req, res) => {
+app.get("/adminToday", auth_1.validarAdminToken, (_req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'public', 'adminPages', 'home.html'));
 });

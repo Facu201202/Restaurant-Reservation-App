@@ -1,0 +1,211 @@
+.li-items {
+    padding: 20px;
+}
+
+.li-elements {
+    justify-content: center;
+}
+
+.main{
+    background-color: white;
+    padding: 50px;
+}
+
+.container p {
+    margin: 0;
+}
+
+.info-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+
+.form-filter input {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid rgba(184, 176, 176, 0.829);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#searchDateContainer{
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#date{
+    border: 1px solid rgba(184, 176, 176, 0.829);
+    border-radius: 8px;
+    padding: 4px 6px;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.fa-chevron-left, .fa-chevron-right{
+    border: 1px solid rgba(184, 176, 176, 0.829);
+    border-radius: 8px;
+    padding: 4px 6px;
+    font-weight: bold
+}
+
+.fa-chevron-left, .fa-chevron-right:hover{
+    cursor: pointer;
+}
+
+
+.info-amount{
+    display: flex;
+}
+
+.info-amount-item{
+    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid rgba(184, 176, 176, 0.829);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+p.people-text, p.reserve-text{
+    font-size: small;
+    font-weight: bold;
+}
+
+p.people-content, p.reserve-content{
+    font-size:x-large;
+    color: #fea941;
+}
+
+.todayReserves-container{
+    border: 1px solid rgba(184, 176, 176, 0.829);
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#todayReserves-head th {
+    text-align: left;
+    padding: 10px;
+}
+
+#todayReserves-body tr{
+    border: 1px solid rgba(184, 176, 176, 0.829);
+}
+
+#todayReserves-body td{
+    padding: 15px 5px;
+}
+
+
+#todayReserves-body td:nth-child(1) {
+    width: 8%;
+    padding-left: 10px;
+  }
+
+#todayReserves-body td:nth-child(2) {
+    width: 30%;
+  }
+
+#todayReserves-body td:nth-child(3) {
+    width: 15%;
+  }
+
+#todayReserves-body td:nth-child(4) {
+    width: 15%;
+  }
+
+#todayReserves-body td:nth-child(5) {
+    text-align: right;
+    padding-right: 55px;
+  }
+
+#todayReserves-body select{
+    padding: 3px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+
+/*---------RESPONSIVE---------- */
+
+
+/* dispositivos móviles medianos */
+@media (max-width: 768px) {
+    .main{
+        padding: 50px 0;
+    }
+
+    .container{
+        font-size: smaller;
+        padding: 2px;
+    }
+
+    .info-container{
+        height: 130px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-filter{
+        width: 75%;
+    }
+    .form-filter input {
+        width: 100%;
+    }
+
+    .info-amount{
+        width: 75%;
+        justify-content: space-between;
+    }
+
+    .info-amount-item{
+        margin-left: 0;
+    }
+
+    #todayReserves-body tr td{
+        text-align: center;
+    }
+
+    #todayReserves-body td:nth-child(5) {
+        padding-right: 10px;
+      }
+
+    #todayReserves-body select{
+        padding: 1px;
+        font-size: smaller;
+    }
+
+    .searchContainer{
+        display: flex;
+    }
+
+    #searchDateContainer {
+        margin: 0;
+    }
+}
+
+/* Estilos para tablets y dispositivos móviles grandes */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .container {
+        width: 100%;
+    }
+    
+}
+
+/*pantallas de laptops pequeñas */
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+
+    .li-elements {
+        justify-content: center;
+    }
+
+    .li-items {
+        margin: 0 20px;
+    }
+}

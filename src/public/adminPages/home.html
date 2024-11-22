@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/userHome.css">
+  <link rel="stylesheet" href="/styles/adminHome.css">
 </head>
 
 <body>
@@ -18,8 +19,7 @@
           <h3>LOGOTIPO</h3>
         </div>
         <ul class="li-elements">
-          <li><a class="li-items" href="#">RESERVAS</a></li>
-          <li><a class="li-items" href="#">RESERVAS DE HOY</a></li>
+          <li><a class="li-items" href="/adminToday">RESERVAS</a></li>
           <li><a class="li-items" href="#">USUARIOS</a></li>
         </ul>
         <a><BUtton class="button-nav" id="button-nav">Cerrar Sesión</BUtton></a>
@@ -34,12 +34,48 @@
   </header>
   <main class="main">
     <div class="container">
+      <div class="info-container">
+        <div class="searchContainer">
+          <form class="form-filter">
+            <input type="text" placeholder="Buscar" id="inputSearch">
+          </form>
+          <div id="searchDateContainer">
+            <i class="fa-solid fa-chevron-left" id="leftArrow"></i>
+            <div id="date"></div>
+            <i class="fa-solid fa-chevron-right" id="rightArrow"></i>
+          </div>
+        </div>
 
+
+        <div class="info-amount">
+          <div class="info-amount-item">
+            <p class="reserve-text">Total de Reservas</p>
+            <p class="reserve-content"></p>
+
+          </div>
+          <div class="info-amount-item">
+            <p class="people-text">Total de Personas</p>
+            <p class="people-content"></p>
+          </div>
+
+        </div>
+      </div>
+      <table class="todayReserves-container">
+        <thead id="todayReserves-head">
+          <tr>
+            <th colspan="5">Lista de reservas para hoy:</th>
+          </tr>
+        </thead>
+        <tbody id="todayReserves-body">
+
+        </tbody>
+      </table>
     </div>
   </main>
-
+  <script src="/scripts/adminHome.js"></script>
   <script src="/scripts/hamburger.js"></script>
   <script src="/scripts/logout.js"></script>
+  <script src="https://kit.fontawesome.com/dcc8499c7a.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

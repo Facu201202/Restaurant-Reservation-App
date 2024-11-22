@@ -15,4 +15,6 @@ router.post("/reservas", user_controllers_1.findReservas);
 router.post("/alta/reserva", auth_1.validarToken, user_controllers_1.altaReserva);
 router.post("/misReservas", auth_1.validarToken, user_controllers_1.verReservas);
 router.delete("/misReservas", auth_1.validarToken, user_controllers_1.bajaReserva);
+router.post("/today", user_controllers_1.reserveToday);
+router.post("/updateReserve", auth_1.validarAdminToken, user_controllers_1.updateReserve);
 exports.default = router;
