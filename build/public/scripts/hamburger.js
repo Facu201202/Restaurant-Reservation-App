@@ -1,6 +1,10 @@
 "use strict";
-const hamburger = document.querySelector(".hamburger");
-const liElements = document.querySelector(".li-elements");
-hamburger.addEventListener("click", () => {
-    liElements.classList.toggle("show");
+const nav = document.getElementById("menu-elements");
+const abrir = document.getElementById("abrir");
+const cerrar = document.getElementById("cerrar");
+abrir.addEventListener("click", () => {
+    nav.classList.add("nav-visibie");
+});
+cerrar.addEventListener("click", () => {
+    nav.classList.remove("nav-visibie");
 });

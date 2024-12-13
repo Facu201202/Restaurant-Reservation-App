@@ -12,6 +12,7 @@ exports.agregarReserva = agregarReserva;
 exports.buscarReservas = buscarReservas;
 exports.eliminarReserva = eliminarReserva;
 exports.actualizarReserva = actualizarReserva;
+exports.actualizarUsuario = actualizarUsuario;
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
@@ -105,6 +106,21 @@ function eliminarReserva(id) {
 function actualizarReserva(id, status) {
     return new Promise((resolve, reject) => {
         connection.query("UPDATE reservas_realizadas SET estado = ? WHERE id_reserva = ?", [status, id], (error, result) => {
+            error ? reject(error) : resolve(result);
+        });
+    });
+}
+function actualizarUsuario(id, nombre, apellido, correo, usuario, contraseña) {
+    return new Promise((resolve, reject) => {
+        let consultaSQL = "UPDATE usuarios SET nombre = ?, apellido = ?, usuario = ?, correo = ?";
+        let params = [nombre, apellido, usuario, correo];
+        if (contraseña) {
+            consultaSQL += ', contrasenia = ?';
+            params.push(contraseña);
+        }
+        consultaSQL += ' WHERE id_usuario = ?';
+        params.push(id);
+        connection.query(consultaSQL, params, (error, result) => {
             error ? reject(error) : resolve(result);
         });
     });

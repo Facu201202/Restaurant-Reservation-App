@@ -2,9 +2,8 @@
     --aprobada: #6cbf6c;
     --pendiente: #FCF75E;
     --cancelada: #d34240;
-
+    --finalizada: rgba(97, 94, 94, 0.349);
 }
-
 
 .container {
     display: grid;
@@ -93,6 +92,13 @@
     padding: 4px;
     border-radius: 7px;
     background-color: var(--cancelada);
+    color: white;
+}
+
+.Finalizada{
+    padding: 4px;
+    border-radius: 7px;
+    background-color: var(--finalizada);
     color: white;
 }
 

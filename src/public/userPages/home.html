@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Nueva reserva</title>
+  <link rel="icon" href="/assets/icon.png" type="image/png">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/userHome.css">
+  <link rel="stylesheet" href="/styles/hamburger.css">
 </head>
 
 <body>
@@ -17,16 +19,16 @@
           <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
           <h3>LOGOTIPO</h3>
         </div>
-        <ul class="li-elements">
-          <li><a class="li-items" href="/myReserve">MIS RESERVAS</a></li>
-          <li><a class="li-items" href="/user">RESERVAR</a></li>
-        </ul>
-        <a><BUtton class="button-nav" id="button-nav">Cerrar Sesión</BUtton></a>
-        <div class="hamburger">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+        <i class="fa-solid fa-bars abrir-menu" id="abrir"></i>
+        <div class="menu-elements" id="menu-elements">
+          <i class="fa-solid fa-xmark cerrar-menu" id="cerrar"></i>
+          <ul class="li-elements">
+            <li><a class="li-items" href="/myReserve">MIS RESERVAS</a></li>
+            <li><a class="li-items" href="/user">RESERVAR</a></li>
+            <li><Button class="button-nav button-second" id="button-nav-second">Cerrar Sesión</Button></li>
+          </ul>
         </div>
+        <a><Button class="button-nav button-main" id="button-nav">Cerrar Sesión</Button></a>
       </nav>
     </div>
 
@@ -47,6 +49,7 @@
           </form>
         </div>
         <div class="hora-right">
+          <img id="CheckReservesImg" src="/assets/CheckReservesImg.png">
           <div class="grid-container" id="grid-container"></div>
           <p id="info-reserva"></p>
         </div>
@@ -64,6 +67,7 @@
   <script src="/scripts/hamburger.js"></script>
   <script src="/scripts/userHome.js"></script>
   <script src="/scripts/logout.js"></script>
+  <script src="https://kit.fontawesome.com/dcc8499c7a.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

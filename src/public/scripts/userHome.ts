@@ -6,6 +6,7 @@ const messageForm = document.getElementById("message-form") as HTMLParagraphElem
 const reservarMessage = document.getElementById("reservar-message") as HTMLParagraphElement
 const fecha = document.getElementById("fecha") as HTMLInputElement;
 const cantidad = document.getElementById("cantidad") as HTMLInputElement;
+const CheckReservesImg = document.getElementById("CheckReservesImg") as HTMLImageElement
 let selectHour: Hours
 
 
@@ -64,6 +65,7 @@ const createGrid = async (cantidad: string, fecha: string, blockHours: string[])
         messageForm.style.fontSize = "medium"
         messageForm.style.textAlign = "center"
     } else {
+        CheckReservesImg.style.display = "none"
         gridContainer.textContent = "";
         hours.forEach((hour: Hours) => {
             const cell = document.createElement('div');
@@ -117,7 +119,7 @@ reservarButton.addEventListener('click', async (e) => {
             body: JSON.stringify(reserva)
         })
 
-        const resJson =  await reservar.json()
+        const resJson = await reservar.json()
         if (!reservar.ok) {
             throw new Error(resJson.message)
         }

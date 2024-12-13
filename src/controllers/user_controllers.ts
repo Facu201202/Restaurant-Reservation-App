@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva, actualizarReserva } from "../config/db";
+import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva, actualizarReserva, actualizarUsuario } from "../config/db";
 import { Usuario, UserInfo, Reserva, InfoMessage } from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
 import { createToken, createAdminToken } from "../middlewares/auth";
@@ -115,6 +115,32 @@ export const findUser = async (req: Request, res: Response): Promise<Response> =
         });
     }
 }
+
+export const modifyUser = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { id, nombre, apellido, correo, usuario, contraseña } = req.body.data
+        console.log(id, nombre, apellido, correo, usuario, contraseña)
+
+        if (contraseña) {
+            const salt = await bcryptjs.genSalt(5)
+            const hashPassword = await bcryptjs.hash(contraseña, salt)
+            await actualizarUsuario(Number(id), nombre, apellido, correo, usuario, hashPassword)
+
+        } else {
+            await actualizarUsuario(Number(id), nombre, apellido, correo, usuario, contraseña)
+        }
+
+        return res.status(200).send({
+            message: "Usuario modificado con exito"
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send({
+            message: "Error interno al modificar usuario"
+        })
+    }
+}
+
 
 
 /*Funcion para traer los horarios totales*/
@@ -332,8 +358,8 @@ export const bajaReserva = async (req: Request, res: Response): Promise<Response
 }
 
 
-export const reserveToday = async (req:Request, res: Response): Promise<Response> =>{
-    try{
+export const reserveToday = async (req: Request, res: Response): Promise<Response> => {
+    try {
         const fecha = req.body.date
         const reservas = await encontrarReservas(fecha)
 
@@ -347,34 +373,51 @@ export const reserveToday = async (req:Request, res: Response): Promise<Response
             estado: reserva.estado
         }))
 
-        
+
         return res.status(200).send({
             message: `Reservas del dia ${fecha}`,
             today: totalReservas
         })
 
-    }catch(err){
+    } catch (err) {
         return res.status(400).send({
             message: "Error a buscar reservas del dia",
             Error: err
         })
     }
-   
+
 
 
 }
 
 
-export const updateReserve = async (req: Request, res:Response): Promise<Response> => {
-    try{
+export const updateReserve = async (req: Request, res: Response): Promise<Response> => {
+    try {
         await actualizarReserva(req.body.id, req.body.status)
         return res.status(200).send({
             message: "Reserva modificada con exito"
         })
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).send({
             message: "Error al modificar la reserva" + err
         })
     }
+}
+
+
+export const getUsers = async (_req: Request, res: Response): Promise<Response> => {
+    try {
+        const users = await traerTodo("usuarios")
+        return res.status(200).send({
+            message: "Usuarios encontrados",
+            users: users
+        })
+    } catch (err) {
+        return res.status(400).send({
+            message: "Error al encotrar los usuarios"
+        })
+    }
+
+
 }

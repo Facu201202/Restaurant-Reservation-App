@@ -106,9 +106,29 @@ export function eliminarReserva(id: number): Promise<OkPacket> {
     })
 }
 
-export function actualizarReserva(id: number, status: string): Promise<OkPacket>{
-    return new Promise((resolve, reject) =>{
+export function actualizarReserva(id: number, status: string): Promise<OkPacket> {
+    return new Promise((resolve, reject) => {
         connection.query("UPDATE reservas_realizadas SET estado = ? WHERE id_reserva = ?", [status, id], (error, result) => {
+            error ? reject(error) : resolve(result)
+        })
+    })
+}
+
+
+export function actualizarUsuario(id: any, nombre: string, apellido: string, correo: string, usuario: string, contraseña: string): Promise<OkPacket> {
+    return new Promise((resolve, reject) => {
+        let consultaSQL = "UPDATE usuarios SET nombre = ?, apellido = ?, usuario = ?, correo = ?"
+        let params = [nombre, apellido, usuario, correo]
+
+        if (contraseña) {
+            consultaSQL += ', contrasenia = ?'
+            params.push(contraseña)
+        }
+
+        consultaSQL += ' WHERE id_usuario = ?'
+        params.push(id)
+
+        connection.query(consultaSQL, params, (error, result) => {
             error ? reject(error) : resolve(result)
         })
     })

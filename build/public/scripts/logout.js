@@ -8,8 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const logoutBtn = document.getElementById("button-nav");
-logoutBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+const logoutBtnMain = document.getElementById("button-nav");
+const logoutBtnSecond = document.getElementById("button-nav-second");
+logoutBtnMain.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+    logout();
+}));
+logoutBtnSecond.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+    logout();
+}));
+const logout = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch("http://localhost:3000/api/logout", {
             method: 'POST',
@@ -23,4 +30,4 @@ logoutBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, func
     catch (err) {
         console.log("ERROR AL CERRAR SESION", err);
     }
-}));
+});

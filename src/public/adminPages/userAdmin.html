@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="icon" href="/assets/icon.png" type="image/png">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/userHome.css">
+    <link rel="stylesheet" href="/styles/adminUsers.css">
+    <link rel="stylesheet" href="/styles/hamburger.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
+                    <h3>LOGOTIPO</h3>
+                </div>
+                <i class="fa-solid fa-bars abrir-menu" id="abrir"></i>
+                <div class="menu-elements" id="menu-elements">
+                    <i class="fa-solid fa-xmark cerrar-menu" id="cerrar"></i>
+                    <ul class="li-elements">
+                        <li><a class="li-items" href="/adminToday">RESERVAS</a></li>
+                        <li><a class="li-items" href="/usersList">USUARIOS</a></li>
+                        <li><Button class="button-nav button-second" id="button-nav-second">Cerrar Sesión</Button></li>
+                    </ul>
+                </div>
+                <a><Button class="button-nav button-main" id="button-nav">Cerrar Sesión</Button></a>
+            </nav>
+        </div>
+
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="table-container">
+                <div class="info-container">
+                    <div class="searchContainer">
+                        <form class="form-filter">
+                            <input type="text" placeholder="Buscar" id="inputSearch">
+                        </form>
+                    </div>
+                </div>
+                <table class="allUsers-container">
+                    <thead id="allUsers-head">
+                        <tr>
+                            <th colspan="5">Lista de Usuarios</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <form class="user-form" id="user-form">
+                <input type="hidden" id="userId" name="userId">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" placeholder="apellido">
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" id="correo" placeholder="Correo">
+                <label for="usuario">Usuario</label>
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" disabled>
+                <label class="checkboxPassword">
+                    Cambiar contraseña
+                    <input type="checkbox" name="habilitarContraseña" id="habilitarContraseña"
+                        onclick="togglePasswordField()">
+                </label>
+                <p id="message"></p>
+                <button type="submit">Modificar</button>
+            </form>
+        </div>
+    </main>
+    <script src="/scripts/adminUsers.js"></script>
+    <script src="/scripts/hamburger.js"></script>
+    <script src="/scripts/logout.js"></script>
+    <script src="https://kit.fontawesome.com/dcc8499c7a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -42,3 +42,6 @@ app.get("/myReserve", auth_1.validarToken, (_req, res) => {
 app.get("/adminToday", auth_1.validarAdminToken, (_req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'public', 'adminPages', 'home.html'));
 });
+app.get("/usersList", auth_1.validarAdminToken, (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'public', 'adminPages', 'userAdmin.html'));
+});

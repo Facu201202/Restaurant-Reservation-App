@@ -7,10 +7,12 @@
   <title>Inicio</title>
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="icon" href="/assets/icon.png" type="image/png">
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/carrusel.css">
   <link rel="stylesheet" href="/styles/footer.css">
+  <link rel="stylesheet" href="/styles/hamburger.css">
 </head>
 
 <body>
@@ -22,18 +24,20 @@
           <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
           <h3>LOGOTIPO</h3>
         </div>
-        <ul class="li-elements">
-          <li><a class="li-items" href="#about">ACERCA DE</a></li>
-          <li><a class="li-items" href="">CONTACTO</a></li>
-          <li><a class="li-items" href="#platos">PLATOS</a></li>
-          <li><a class="li-items" href="#clientes">OPINIONES</a></li>
-        </ul>
-        <a href="#reserva"><BUtton class="button-nav">Hacer reserva</BUtton></a>
-        <div class="hamburger">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+        <i class="fa-solid fa-bars abrir-menu" id="abrir"></i>
+        <div class="menu-elements" id="menu-elements">
+          <i class="fa-solid fa-xmark cerrar-menu" id="cerrar"></i>
+          <ul class="li-elements">
+            <li><a class="li-items" href="#about">ACERCA DE</a></li>
+            <li><a class="li-items" href="#contact">CONTACTO</a></li>
+            <li><a class="li-items" href="#platos">PLATOS</a></li>
+            <li><a class="li-items" href="#clientes">OPINIONES</a></li>
+            <li><a href="#reserva"><Button class="button-nav button-second" id="button-nav-second">Hacer
+                  reserva</Button></a></li>
+          </ul>
         </div>
+        <a href="#reserva">
+          <Button class="button-nav button-main" id="button-nav">Hacer reserva</Button></a>
       </nav>
 
       <div class="header-text-content">
@@ -188,7 +192,7 @@
       <img src="/assets/2.jpg" alt="" class="middle-img">
       <img src="/assets/3.jpg" alt="" class="right-img">
     </div>
-    <div class="footer-contact">
+    <div class="footer-contact" id="contact">
       <div class="footer-left">
         <h3 class="footer-title">contáctate con nosotros</h3>
       </div>
@@ -216,6 +220,7 @@
   <script src="/scripts/carrusel.js"></script>
   <script src="/scripts/hamburger.js"></script>
   <script src="/scripts/index.js"></script>
+  <script src="https://kit.fontawesome.com/dcc8499c7a.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -5,6 +5,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 
 .header {
     position: relative;
@@ -70,7 +74,11 @@
 }
 
 
-.button-nav, .button-header, .button-about, .button-reserva, .form-fecha-button{
+.button-nav,
+.button-header,
+.button-about,
+.button-reserva,
+.form-fecha-button {
     padding: 10px;
     background-color: #fea941;
     width: 160px;
@@ -85,7 +93,11 @@
     display: none;
 }
 
-.button-nav, .button-header, .button-about, .button-reserva:hover, .form-fecha-button:hover {
+.button-nav,
+.button-header,
+.button-about,
+.button-reserva:hover,
+.form-fecha-button:hover {
     cursor: pointer;
 }
 
@@ -129,35 +141,14 @@
 
 /* dispositivos móviles medianos */
 @media (max-width: 768px) {
-    .header{
+    .header {
         height: 90vh;
     }
 
-    .hamburger {
-        display: flex;
-    }
 
-    .li-elements,
-    .button-nav {
-        position: fixed;
-        right: -100%;
-        top: 60px;
-        flex-direction: column;
-        background-color: #df8c27;
-        width: 20%;
-        height: 20vh;
-        align-items: center;
-        justify-content: center;
-        transition: 0.5s;
-        padding: 0 10px;
-    }
 
-    .li-elements.show {
-        right: 0;
-    }
-
-    .li-elements li{
-        font-size:x-small;
+    .li-elements li {
+        font-size: x-small;
         margin-bottom: 10px;
     }
 
@@ -167,77 +158,27 @@
         max-width: 100%;
         text-align: center;
     }
-    
-    .header-text{
+
+    .header-text {
         font-size: 15px;
-       
+
     }
 
-    .button-header{
+    .button-header {
         margin-top: 40px;
         display: inline;
     }
-    .titulo{
-        font-size:35px;
+
+    .titulo {
+        font-size: 35px;
     }
 
-}
-
-/* Estilos para tablets y dispositivos móviles grandes */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .li-elements,
-    .button-nav {
-        position: fixed;
-        right: -100%;
-        top: 60px;
-        flex-direction: column;
-        background-color: #df8c27;
-        width: 16%;
-        height: 25vh;
-        align-items: center;
-        justify-content: center;
-        transition: 0.5s;
-        padding: 0 10px;
-    }
-
-    .li-elements.show {
-        right: 0;
-    }
-
-    .li-elements li{
-        font-size:medium;
-        margin-bottom: 20px;
-    }
-
-    .header-text-content {
-        padding-right: 70px;
-        padding-left: 70px;
-        max-width: 100%;
-        text-align: center;
-    }
-    
-    .header-text{
-        font-size: 20px;
-       
-    }
-
-    .button-header{
-        margin-top: 40px;
-        display: inline;
-    }
-    .titulo{
-        font-size:50px;
-    }
 }
 
 
 
 /*pantallas de laptops pequeñas */
-@media (min-width: 1024px) and (max-width: 1280px){
+@media (min-width: 1024px) and (max-width: 1280px) {
 
     .navbar {
         font-size: large;
@@ -253,7 +194,7 @@
         font-size: 20px;
     }
 
-    .titulo{
+    .titulo {
         font-size: 60px;
     }
 

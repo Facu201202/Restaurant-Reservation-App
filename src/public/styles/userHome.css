@@ -1,5 +1,6 @@
 /*---------HEADER---------- */
 
+
 .header {
     height: auto;
     background-color: #db5a34;
@@ -7,13 +8,15 @@
 }
 
 .li-elements {
-    justify-content: space-between;
+    justify-content: center;
 
 }
 
 .li-items {
     padding: 0 26px;
 }
+
+
 
 
 /*---------MAIN---------- */
@@ -41,6 +44,7 @@
 .fecha-left {
     padding: 20px;
     width: 40%;
+    min-height: 390px;
     border: 1px solid black;
 
 }
@@ -77,6 +81,8 @@
 
 .hora-right {
     padding: 20px;
+    text-align: center;
+    align-content: center;
 }
 
 .grid-container {
@@ -123,6 +129,10 @@
     font-size: medium;
 }
 
+
+#CheckReservesImg{
+    width: 75%;
+}
 /*---------RESPONSIVE---------- */
 
 
@@ -132,16 +142,6 @@
     .main {
         padding: 50px 10px;
         height: auto;
-    }
-
-    .li-elements,
-    .button-nav {
-        width: 20%;
-        height: 15vh;
-    }
-
-    .li-items {
-        padding: 0;
     }
 
     .container {
@@ -205,17 +205,6 @@
     .container p {
         text-align: center;
         font-size: medium;
-    }
-
-
-    .li-elements,
-    .button-nav {
-        width: 16%;
-        height: 15vh;
-    }
-
-    .li-items {
-        padding: 0;
     }
 
     .reserva-container {

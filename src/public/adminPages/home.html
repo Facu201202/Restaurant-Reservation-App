@@ -4,10 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Reservas</title>
+  <link rel="icon" href="/assets/icon.png" type="image/png">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/userHome.css">
   <link rel="stylesheet" href="/styles/adminHome.css">
+  <link rel="stylesheet" href="/styles/hamburger.css">
 </head>
 
 <body>
@@ -18,16 +20,16 @@
           <img src="/assets/logo.png" alt="Logo de la empresa" width="100" height="auto">
           <h3>LOGOTIPO</h3>
         </div>
-        <ul class="li-elements">
-          <li><a class="li-items" href="/adminToday">RESERVAS</a></li>
-          <li><a class="li-items" href="#">USUARIOS</a></li>
-        </ul>
-        <a><BUtton class="button-nav" id="button-nav">Cerrar Sesión</BUtton></a>
-        <div class="hamburger">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+        <i class="fa-solid fa-bars abrir-menu" id="abrir"></i>
+        <div class="menu-elements" id="menu-elements">
+          <i class="fa-solid fa-xmark cerrar-menu"  id="cerrar"></i>
+          <ul class="li-elements">
+            <li><a class="li-items" href="/adminToday">RESERVAS</a></li>
+            <li><a class="li-items" href="/usersList">USUARIOS</a></li>
+            <li><Button class="button-nav button-second" id="button-nav-second">Cerrar Sesión</Button></li>
+          </ul>
         </div>
+        <a><Button class="button-nav button-main" id="button-nav">Cerrar Sesión</Button></a>
       </nav>
     </div>
 

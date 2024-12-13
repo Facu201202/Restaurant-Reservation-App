@@ -16,6 +16,7 @@ const messageForm = document.getElementById("message-form");
 const reservarMessage = document.getElementById("reservar-message");
 const fecha = document.getElementById("fecha");
 const cantidad = document.getElementById("cantidad");
+const CheckReservesImg = document.getElementById("CheckReservesImg");
 let selectHour;
 fechaButton.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -60,6 +61,7 @@ const createGrid = (cantidad, fecha, blockHours) => __awaiter(void 0, void 0, vo
         messageForm.style.textAlign = "center";
     }
     else {
+        CheckReservesImg.style.display = "none";
         gridContainer.textContent = "";
         hours.forEach((hour) => {
             const cell = document.createElement('div');

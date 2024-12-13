@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateReserve = exports.reserveToday = exports.bajaReserva = exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.findUser = exports.createUser = void 0;
+exports.getUsers = exports.updateReserve = exports.reserveToday = exports.bajaReserva = exports.verReservas = exports.altaReserva = exports.logout = exports.findReservas = exports.getTable = exports.modifyUser = exports.findUser = exports.createUser = void 0;
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
@@ -104,6 +104,30 @@ const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.findUser = findUser;
+const modifyUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id, nombre, apellido, correo, usuario, contraseña } = req.body.data;
+        console.log(id, nombre, apellido, correo, usuario, contraseña);
+        if (contraseña) {
+            const salt = yield bcryptjs_1.default.genSalt(5);
+            const hashPassword = yield bcryptjs_1.default.hash(contraseña, salt);
+            yield (0, db_1.actualizarUsuario)(Number(id), nombre, apellido, correo, usuario, hashPassword);
+        }
+        else {
+            yield (0, db_1.actualizarUsuario)(Number(id), nombre, apellido, correo, usuario, contraseña);
+        }
+        return res.status(200).send({
+            message: "Usuario modificado con exito"
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).send({
+            message: "Error interno al modificar usuario"
+        });
+    }
+});
+exports.modifyUser = modifyUser;
 /*Funcion para traer los horarios totales*/
 const getTable = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hours = yield (0, db_1.traerTodo)("horas");
@@ -318,3 +342,18 @@ const updateReserve = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateReserve = updateReserve;
+const getUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield (0, db_1.traerTodo)("usuarios");
+        return res.status(200).send({
+            message: "Usuarios encontrados",
+            users: users
+        });
+    }
+    catch (err) {
+        return res.status(400).send({
+            message: "Error al encotrar los usuarios"
+        });
+    }
+});
+exports.getUsers = getUsers;

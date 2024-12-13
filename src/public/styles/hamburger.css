@@ -1,0 +1,129 @@
+.li-elements {
+    display: flex;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+.li-elements a {
+    text-decoration: none;
+    font-size: x-large;
+}
+
+.header-text-content a{
+    text-decoration: none;
+}
+
+#abrir,
+#cerrar,
+.button-second {
+    display: none;
+}
+
+#abrir {
+    margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .button-main {
+        display: none;
+    }
+
+    #abrir,
+    #cerrar,
+    .button-second {
+        display: block;
+    }
+
+    .menu-elements {
+        visibility: hidden;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: end;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(36, 35, 35);
+        padding: 2rem;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+    }
+
+    .nav-visibie {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .li-elements {
+        flex-direction: column;
+        align-items: end;
+        justify-content: start;
+        padding: 0;
+        margin: 0;
+    }
+
+    .li-items {
+        padding: 0;
+    }
+
+    .li-elements a {
+        color: white;
+    }
+
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+
+    .button-main {
+        display: none;
+    }
+
+    #abrir,
+    #cerrar,
+    .button-second {
+        display: block;
+    }
+
+    .menu-elements {
+        visibility: hidden;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: end;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(36, 35, 35);
+        padding: 2rem;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+    }
+
+    .nav-visibie {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .li-elements {
+        flex-direction: column;
+        align-items: end;
+        justify-content: start;
+        padding: 0;
+        margin: 0;
+    }
+
+    .li-items {
+        padding: 0;
+    }
+
+    .li-elements a {
+        color: white;
+    }
+
+}
