@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 const allUsers = async () => {
     try {
-        const res = await fetch("http://localhost:3000/api/allUsers", {
+        const res = await fetch("/api/allUsers", {
             method: "GET"
         })
 
@@ -83,7 +83,7 @@ const modifyUser = async (info: FormData) => {
             contraseña: info.get("contraseña") as string
         }
 
-        res = await fetch("http://localhost:3000/api/modifyUser", {
+        res = await fetch("/api/modifyUser", {
             method: "POST",
             credentials: 'include',
             headers: {

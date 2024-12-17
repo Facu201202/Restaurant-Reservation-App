@@ -42,7 +42,7 @@ const changeDay = (dia) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const reservesToday = (fecha) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const res = yield fetch("http://localhost:3000/api/today", {
+        const res = yield fetch("/api/today", {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -119,7 +119,7 @@ const cambiarEstado = (evento, reserva) => __awaiter(void 0, void 0, void 0, fun
     const confirmedStatus = confirm(`¿Desea cambiar el estado de la reserva a ${statusSelect}?`);
     if (confirmedStatus) {
         try {
-            const res = yield fetch("http://localhost:3000/api/updateReserve", {
+            const res = yield fetch("/api/updateReserve", {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

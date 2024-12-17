@@ -22,7 +22,7 @@ formulario === null || formulario === void 0 ? void 0 : formulario.addEventListe
             contraseña: formData.get("contraseña")
         };
         console.log(data);
-        const respuesta = yield fetch("http://localhost:3000/api/register", {
+        const respuesta = yield fetch("/api/register", {
             method: "POST",
             headers: {
                 "content-Type": "application/json"

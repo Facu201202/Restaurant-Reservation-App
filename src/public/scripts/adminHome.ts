@@ -37,7 +37,7 @@ const changeDay = async (dia: number) => {
 
 const reservesToday = async (fecha: string) => {
     try {
-        const res = await fetch("http://localhost:3000/api/today", {
+        const res = await fetch("/api/today", {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -132,7 +132,7 @@ const cambiarEstado = async(evento: HTMLSelectElement, reserva: number) => {
     
     if(confirmedStatus){
         try{
-            const res = await fetch("http://localhost:3000/api/updateReserve", {
+            const res = await fetch("/api/updateReserve", {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

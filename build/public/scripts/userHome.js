@@ -25,7 +25,7 @@ fechaButton.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, f
             fecha: fecha.value,
             cantidad: cantidad.value
         };
-        const reservas = yield fetch("http://localhost:3000/api/reservas", {
+        const reservas = yield fetch("/api/reservas", {
             method: 'POST',
             headers: {
                 "content-Type": "application/json"
@@ -41,7 +41,7 @@ fechaButton.addEventListener("click", (e) => __awaiter(void 0, void 0, void 0, f
 }));
 const getHours = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respuesta = yield fetch("http://localhost:3000/api/hours", {
+        const respuesta = yield fetch("/api/hours", {
             method: 'GET'
         });
         const resJson = yield respuesta.json();
@@ -98,7 +98,7 @@ reservarButton.addEventListener('click', (e) => __awaiter(void 0, void 0, void 0
             cantidad: cantidad.value,
             hora: selectHour
         };
-        const reservar = yield fetch("http://localhost:3000/api/alta/reserva", {
+        const reservar = yield fetch("/api/alta/reserva", {
             method: 'POST',
             credentials: "include",
             headers: {

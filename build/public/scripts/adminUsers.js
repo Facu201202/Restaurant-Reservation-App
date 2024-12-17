@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, void
 }));
 const allUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const res = yield fetch("http://localhost:3000/api/allUsers", {
+        const res = yield fetch("/api/allUsers", {
             method: "GET"
         });
         const resJson = yield res.json();
@@ -76,7 +76,7 @@ const modifyUser = (info) => __awaiter(void 0, void 0, void 0, function* () {
             usuario: info.get("usuario"),
             contraseña: info.get("contraseña")
         };
-        res = yield fetch("http://localhost:3000/api/modifyUser", {
+        res = yield fetch("/api/modifyUser", {
             method: "POST",
             credentials: 'include',
             headers: {

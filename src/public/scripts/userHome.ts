@@ -18,7 +18,7 @@ fechaButton.addEventListener("click", async (e) => {
             cantidad: cantidad.value
         }
 
-        const reservas = await fetch("http://localhost:3000/api/reservas", {
+        const reservas = await fetch("/api/reservas", {
             method: 'POST',
             headers: {
                 "content-Type": "application/json"
@@ -37,7 +37,7 @@ fechaButton.addEventListener("click", async (e) => {
 
 const getHours = async () => {
     try {
-        const respuesta = await fetch("http://localhost:3000/api/hours", {
+        const respuesta = await fetch("/api/hours", {
             method: 'GET'
         })
 
@@ -109,7 +109,7 @@ reservarButton.addEventListener('click', async (e) => {
             hora: selectHour
         }
 
-        const reservar = await fetch("http://localhost:3000/api/alta/reserva", {
+        const reservar = await fetch("/api/alta/reserva", {
 
             method: 'POST',
             credentials: "include",

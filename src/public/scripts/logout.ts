@@ -13,7 +13,7 @@ logoutBtnSecond.addEventListener("click", async () => {
 const logout = async () => {
     try {
 
-        const res: Response = await fetch("http://localhost:3000/api/logout", {
+        const res: Response = await fetch("/api/logout", {
             method: 'POST',
             credentials: "include"
         })

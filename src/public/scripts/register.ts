@@ -16,7 +16,7 @@ formulario?.addEventListener("submit", async (e) => {
         }
 
         console.log( data)
-        const respuesta = await fetch("http://localhost:3000/api/register", {
+        const respuesta = await fetch("/api/register", {
             method: "POST",
             headers: {
                 "content-Type": "application/json"

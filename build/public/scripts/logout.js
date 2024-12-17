@@ -18,7 +18,7 @@ logoutBtnSecond.addEventListener("click", () => __awaiter(void 0, void 0, void 0
 }));
 const logout = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const res = yield fetch("http://localhost:3000/api/logout", {
+        const res = yield fetch("/api/logout", {
             method: 'POST',
             credentials: "include"
         });

@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, fu
             contraseña: loginFormData.get("contraseña")
         };
         console.log(data);
-        const respuesta = yield fetch("http://localhost:3000/api/login", {
+        const respuesta = yield fetch("/api/login", {
             method: "POST",
             headers: {
                 "content-Type": "application/json"

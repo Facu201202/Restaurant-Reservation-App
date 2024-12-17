@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const reservasContainer = document.getElementById("card-reserva-container");
 const mostrarMisReservas = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respuesta = yield fetch("http://localhost:3000/api/misReservas", {
+        const respuesta = yield fetch("/api/misReservas", {
             method: 'POST',
             credentials: 'include'
         });
@@ -99,7 +99,7 @@ const cancelarReserva = (fecha, reserva) => __awaiter(void 0, void 0, void 0, fu
     const confirmed = confirm(`¿Estás seguro de que deseas cancelar la reserva del ${fecha} ?`);
     if (confirmed) {
         try {
-            const respuesta = yield fetch("http://localhost:3000/api/misReservas", {
+            const respuesta = yield fetch("/api/misReservas", {
                 method: 'DELETE',
                 headers: {
                     "content-Type": "application/json"

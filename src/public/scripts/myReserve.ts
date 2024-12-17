@@ -2,7 +2,7 @@ const reservasContainer = document.getElementById("card-reserva-container") as H
 
 const mostrarMisReservas = async () => {
     try{
-        const respuesta = await fetch("http://localhost:3000/api/misReservas",{
+        const respuesta = await fetch("/api/misReservas",{
             method: 'POST',
             credentials: 'include'
         })
@@ -114,7 +114,7 @@ const cancelarReserva = async (fecha: string, reserva: number) => {
 
     if(confirmed){
         try{
-            const respuesta =  await fetch("http://localhost:3000/api/misReservas", {
+            const respuesta =  await fetch("/api/misReservas", {
                 method: 'DELETE',
                 headers: {
                     "content-Type": "application/json"
