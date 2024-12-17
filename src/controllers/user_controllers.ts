@@ -1,9 +1,9 @@
 import { Response, Request } from "express";
 import { agregar, traerUno, traerTodo, encontrarReservas, encontrarMesas, agregarReserva, buscarReservas, eliminarReserva, actualizarReserva, actualizarUsuario } from "../config/db";
-import { Usuario, UserInfo, Reserva, InfoMessage } from "../interfaces/interfaces";
+import { Usuario, UserInfo, Reserva, /*InfoMessage */} from "../interfaces/interfaces";
 import bcryptjs from "bcryptjs"
 import { createToken, createAdminToken } from "../middlewares/auth";
-import { messageAltaReserva } from "../helpers/mailer";
+/*import { messageAltaReserva } from "../helpers/mailer";*/
 
 
 
@@ -24,12 +24,14 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
             rol: "usuario"
         }
 
+        console.log(newUser)
 
         if (!newUser.nombre || !newUser.apellido || !newUser.correo || !newUser.contrasenia) {
             throw new Error("campo imcompleto")
         }
 
         const nuevo = await agregar(newUser);
+        console.log(nuevo)
 
         return res.status(200).send({
             message: "Usuario creado con exito",
@@ -293,7 +295,7 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
             estado: "Pendiente"
         }
 
-        const createInfoMessage: InfoMessage = {
+       /* const createInfoMessage: InfoMessage = {
             nombre: user[0].nombre,
             apellido: user[0].apellido,
             correo: user[0].correo,
@@ -303,13 +305,12 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
             mesa: mesasLibres[0]
         }
 
+        const mail = await messageAltaReserva(createInfoMessage)
+        console.log(mail)*/
+
         await agregarReserva(reserva)
 
-        const mail = await messageAltaReserva(createInfoMessage)
-
-        if (!mail) {
-            throw new Error("Error al mandar el mail")
-        }
+     
 
         return res.status(200).send({
             message: "Reserva realizada con exito"
@@ -317,7 +318,7 @@ export const altaReserva = async (req: Request, res: Response): Promise<Response
 
     } catch (err) {
         return res.status(500).send({
-            message: "Error al realizar la reserva" + err,
+            message: "Error al realizar la reserva" + err
 
         })
     }

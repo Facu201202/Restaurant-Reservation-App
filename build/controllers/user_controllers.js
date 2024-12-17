@@ -16,7 +16,7 @@ exports.getUsers = exports.updateReserve = exports.reserveToday = exports.bajaRe
 const db_1 = require("../config/db");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_1 = require("../middlewares/auth");
-const mailer_1 = require("../helpers/mailer");
+/*import { messageAltaReserva } from "../helpers/mailer";*/
 /*Funcion para crear un usuario encriptado */
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -30,10 +30,12 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             contrasenia: hashPassword,
             rol: "usuario"
         };
+        console.log(newUser);
         if (!newUser.nombre || !newUser.apellido || !newUser.correo || !newUser.contrasenia) {
             throw new Error("campo imcompleto");
         }
         const nuevo = yield (0, db_1.agregar)(newUser);
+        console.log(nuevo);
         return res.status(200).send({
             message: "Usuario creado con exito",
             status: nuevo,
@@ -244,27 +246,26 @@ const altaReserva = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             hora: hora.id_hora,
             estado: "Pendiente"
         };
-        const createInfoMessage = {
-            nombre: user[0].nombre,
-            apellido: user[0].apellido,
-            correo: user[0].correo,
-            cantidad: cantidad,
-            fecha: fecha,
-            hora: hora.hora,
-            mesa: mesasLibres[0]
-        };
+        /* const createInfoMessage: InfoMessage = {
+             nombre: user[0].nombre,
+             apellido: user[0].apellido,
+             correo: user[0].correo,
+             cantidad: cantidad,
+             fecha: fecha,
+             hora: hora.hora,
+             mesa: mesasLibres[0]
+         }
+ 
+         const mail = await messageAltaReserva(createInfoMessage)
+         console.log(mail)*/
         yield (0, db_1.agregarReserva)(reserva);
-        const mail = yield (0, mailer_1.messageAltaReserva)(createInfoMessage);
-        if (!mail) {
-            throw new Error("Error al mandar el mail");
-        }
         return res.status(200).send({
             message: "Reserva realizada con exito"
         });
     }
     catch (err) {
         return res.status(500).send({
-            message: "Error al realizar la reserva" + err,
+            message: "Error al realizar la reserva" + err
         });
     }
 });

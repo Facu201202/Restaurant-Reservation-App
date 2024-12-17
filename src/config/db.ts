@@ -5,7 +5,10 @@ dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 import { Reserva, Usuario } from '../interfaces/interfaces';
 
-
+console.log('Conectando a la base de datos:');
+console.log(`Host: ${process.env.DB_HOST}`);
+console.log(`User: ${process.env.DB_USER}`);
+console.log(`Database: ${process.env.DB_NAME}`);
 
 const connection: mysql.Connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -49,6 +52,7 @@ export function traerTodo(tabla: string): Promise<OkPacket> {
         })
     })
 }
+
 
 export function encontrarReservas(fecha: string): Promise<any[]> {
     return new Promise((resolve, reject) => {

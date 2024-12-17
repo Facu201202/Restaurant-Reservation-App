@@ -17,6 +17,10 @@ const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({ path: path_1.default.join(__dirname, '..', '..', '.env') });
+console.log('Conectando a la base de datos:');
+console.log(`Host: ${process.env.DB_HOST}`);
+console.log(`User: ${process.env.DB_USER}`);
+console.log(`Database: ${process.env.DB_NAME}`);
 const connection = mysql_1.default.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
