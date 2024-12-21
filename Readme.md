@@ -46,3 +46,16 @@ Una aplicación web para gestionar reservas en un restaurante. Los usuarios pued
 
 - [Deploy de la App en Render](https://restaurant-reservation-app-rlsv.onrender.com/)  
   *Tener en cuenta que esta es una implementación en un servidor gratuito de Render, por lo que puede tardar algunos segundos en iniciar la aplicación.*
+
+
+## Usuarios de Prueba  
+
+Para probar la aplicación sin necesidad de registrarte, puedes usar las siguientes credenciales de prueba:
+
+### Usuario  
+- **Usuario**: `FacuF`  
+- **Contraseña**: `123`
+
+### Administrador  
+- **Usuario**: `LeoF`  
+- **Contraseña**: `123`
