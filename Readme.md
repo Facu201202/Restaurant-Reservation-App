@@ -39,9 +39,10 @@ Una aplicación web para gestionar reservas en un restaurante. Los usuarios pued
 ## Tecnologías  
 
 - **Frontend**: HTML, CSS, JavaScript, TypeScript.  
-- **Backend**: Node.js, Express.  
+- **Backend**: Node.js, Express, TypeScript.  
 - **Base de datos**: MySQL.  
 
 ## Enlaces  
 
-- [Deploy de la App](https://restaurant-reservation-app-rlsv.onrender.com/)  
+- [Deploy de la App en Render](https://restaurant-reservation-app-rlsv.onrender.com/)  
+  *Tener en cuenta que esta es una implementación en un servidor gratuito de Render, por lo que puede tardar algunos segundos en iniciar la aplicación.*
