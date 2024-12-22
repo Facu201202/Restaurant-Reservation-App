@@ -21,7 +21,7 @@ const allUsers = async () => {
         console.log(resJson)
         return resJson.users
     } catch (err) {
-        console.log(err)
+        console.error("Error al mostrar usuarios")
     }
 }
 

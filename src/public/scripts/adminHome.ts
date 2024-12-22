@@ -51,7 +51,7 @@ const reservesToday = async (fecha: string) => {
         const resJson = await res.json()
         return resJson.today
     } catch (err) {
-        console.log("error")
+        console.error("Error en las reservas")
     }
 
 }

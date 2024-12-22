@@ -24,6 +24,6 @@ const logout = async () => {
         }
 
     } catch (err) {
-        console.log("ERROR AL CERRAR SESION", err)
+        console.error("ERROR AL CERRAR SESION")
     }
 }

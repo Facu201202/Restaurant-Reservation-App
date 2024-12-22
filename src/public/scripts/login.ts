@@ -10,8 +10,6 @@ loginForm.addEventListener("submit", async (e) => {
             usuario: loginFormData.get("usuario") as string,
             contraseña: loginFormData.get("contraseña") as string
         }
-
-        console.log( data)
     
         const respuesta = await fetch("/api/login", {
             method: "POST",
@@ -33,7 +31,6 @@ loginForm.addEventListener("submit", async (e) => {
         mensajeLogin.textContent = "Error al iniciar sesion"
         mensajeLogin.style.display = "block"
         mensajeLogin.style.color = "red"
-        console.log("Error:", err)
     }
 
 })

@@ -9,9 +9,8 @@ const mostrarMisReservas = async () => {
 
         const resJson = await respuesta.json()
         reservasCard(resJson.reservas)
-        console.log(resJson.reservas)    
     }catch(err){
-        console.log(err)
+        console.error("Error al mostrar reservas personales")
     }
 }
 
@@ -132,7 +131,7 @@ const cancelarReserva = async (fecha: string, reserva: number) => {
             
 
         }catch(err){
-            console.log(err)
+            console.error("Error al cancelar reserva")
         }
 
     }else{

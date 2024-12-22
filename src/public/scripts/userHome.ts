@@ -30,7 +30,7 @@ fechaButton.addEventListener("click", async (e) => {
         createGrid(data.cantidad, data.fecha, reservasJson.mesasNoDisponibles);
 
     } catch (err) {
-        console.log("error al mostar horas", err)
+        console.error("Error al mostar horas")
     }
 })
 
@@ -45,7 +45,7 @@ const getHours = async () => {
         return resJson.hours
 
     } catch (err) {
-        console.log("error al traer horarios", err)
+        console.error("Error al traer horarios")
     }
 
 }

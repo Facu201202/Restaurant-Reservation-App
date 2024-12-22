@@ -15,7 +15,6 @@ formulario?.addEventListener("submit", async (e) => {
             contraseña: formData.get("contraseña") as string
         }
 
-        console.log( data)
         const respuesta = await fetch("/api/register", {
             method: "POST",
             headers: {
@@ -31,7 +30,6 @@ formulario?.addEventListener("submit", async (e) => {
 
 
         formulario.reset()
-        console.log("Usuario creado con exito")
         mensaje.style.display = "block";
         const resJSON = await respuesta.json()
 
@@ -44,6 +42,5 @@ formulario?.addEventListener("submit", async (e) => {
         mensaje.textContent = "Error al crear usuario"
         mensaje.style.display = "block"
         mensaje.style.color = "red"
-        console.log("error:", err)
     }
 })
